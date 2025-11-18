@@ -1,0 +1,46 @@
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0b0b0d;
+  color:#e6eef6;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  background:#111;
+  border-bottom:1px solid #222;
+}
+.logo{
+  width:55px;height:55px;
+  background:#d69f2f;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:bold;color:#000;border-radius:8px;
+}
+.nav-btn{
+  background:#222;color:#fff;
+  border:1px solid #444;padding:8px 14px;
+  border-radius:6px;cursor:pointer;
+}
+.nav-btn:hover{background:#333;}
+.nav-btn.active{background:#d69f2f;color:#000;}
+.page{padding:20px;}
+.hidden{display:none;}
+.container{max-width:900px;margin:auto;}
+.games-list,.gamesGrid{display:grid;gap:12px;}
+.game-card{background:#141820;padding:12px;border-radius:8px;display:flex;align-items:center;gap:12px;border:1px solid #222;}
+.game-thumb{width:90px;height:70px;border-radius:8px;object-fit:cover;}
+.btn{background:#d69f2f;color:#000;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;margin-top:10px;}
+.btn:hover{background:#b88422;}
+.accordion{border:1px solid #222;border-radius:8px;overflow:hidden;margin-top:20px;}
+.hint{border-bottom:1px solid #222;}
+.hint button{
+  width:100%;padding:16px;background:#1a1f2a;color:#fff;text-align:left;border:none;display:flex;align-items:center;gap:12px;cursor:pointer;
+}
+.hint button:hover{background:#2a3140;}
+.hint.open button{background:#2e3848;}
+.hint .content{display:none;padding:16px;gap:16px;background:#10141b;}
+.hint.open .content{display:flex;}
+.photo img{width:180px;height:140px;border-radius:8px;object-fit:cover;}
+.footer{margin-top:40px;padding:20px;text-align:center;color:#888;border-top:1px solid #222;background:#111;}
+a{color:#d69f2f;}

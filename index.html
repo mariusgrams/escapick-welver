@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Escape‑Welver</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="logo">EW</div>
+      <div>
+        <h1>Escape‑Welver</h1>
+        <p>Hinweise & Lösungen für eure Escape‑Room‑Rätsel</p>
+      </div>
+    </div>
+
+    <nav id="mainNav" class="nav">
+      <button class="nav-btn active" data-route="home">Home</button>
+      <button class="nav-btn" data-route="games">Spiele</button>
+      <button class="nav-btn" data-route="contact">Kontakt</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <section id="home" class="page">
+      <div class="container">
+        <h2>Willkommen bei Escape‑Welver</h2>
+        <p>Ihr habt ein Escape‑Room‑Abenteuer gebucht? Hier könnt ihr während oder nach dem Spiel gezielt Hinweise abrufen — für Rätsel‑Boxen oder Räume.</p>
+        <p><strong>Wie es funktioniert:</strong></p>
+        <ul>
+          <li>Wählt euer Spiel aus der Liste.</li>
+          <li>Öffnet die einzelnen Hinweise (inkl. Bilder).</li>
+          <li>Falls nötig, könnt ihr die Lösung einblenden.</li>
+        </ul>
+
+        <h3>Aktive Spiele</h3>
+        <div id="gamesList" class="games-list"></div>
+      </div>
+    </section>
+
+    <section id="games" class="page hidden">
+      <div class="container">
+        <h2>Spiele</h2>
+        <div id="gamesGrid"></div>
+      </div>
+    </section>
+
+    <section id="gameDetail" class="page hidden">
+      <div class="container">
+        <div class="game-header">
+          <img id="gameThumb" class="game-thumb" />
+          <div>
+            <h2 id="gameTitle"></h2>
+            <p id="gameShort" class="muted"></p>
+          </div>
+        </div>
+        <div id="hintsContainer"></div>
+        <button id="btnBack" class="btn" onclick="navigate('games')">Zurück</button>
+      </div>
+    </section>
+
+    <section id="contact" class="page hidden">
+      <div class="container">
+        <h2>Kontakt</h2>
+        <form id="contactForm" class="form">
+          <input name="name" placeholder="Name" required />
+          <input name="email" type="email" placeholder="E‑Mail" required />
+          <textarea name="message" placeholder="Nachricht" rows="6" required></textarea>
+          <button class="btn">Absenden</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Escape‑Welver — Alle Rechte vorbehalten</p>
+    <p>
+      <a href="#" onclick="navigate('impressum')">Impressum</a> •
+      <a href="#" onclick="navigate('datenschutz')">Datenschutz</a>
+    </p>
+  </footer>
+
+  <section id="impressum" class="page hidden container small-text">
+    <h2>Impressum</h2>
+    <p>Escape‑Welver<br>Musterstraße 1<br>59581 Welver</p>
+    <p>Kontakt: info@escape-welver.de</p>
+  </section>
+
+  <section id="datenschutz" class="page hidden container small-text">
+    <h2>Datenschutz</h2>
+    <p>Beispiel‑Datenschutzerklärung. Bitte anpassen.</p>
+  </section>
+
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
