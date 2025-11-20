@@ -1,9 +1,25 @@
+/* --- Grundlayout --- */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1;   /* Nimmt den freien Platz ein */
+}
+
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
   background:#0b0b0d;
   color:#e6eef6;
 }
+
+/* --- Header --- */
 .header{
   display:flex;
   justify-content:space-between;
@@ -11,36 +27,232 @@ body{
   background:#111;
   border-bottom:1px solid #222;
 }
+
 .logo{
   width:55px;height:55px;
   background:#d69f2f;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:bold;color:#000;border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  color:#000;
+  border-radius:8px;
 }
+
+/* --- Navigation --- */
 .nav-btn{
-  background:#222;color:#fff;
-  border:1px solid #444;padding:8px 14px;
-  border-radius:6px;cursor:pointer;
+  background:#222;
+  color:#fff;
+  border:1px solid #444;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
 }
+
 .nav-btn:hover{background:#333;}
 .nav-btn.active{background:#d69f2f;color:#000;}
+
+/* --- Allgemeines Layout --- */
 .page{padding:20px;}
 .hidden{display:none;}
 .container{max-width:900px;margin:auto;}
-.games-list,.gamesGrid{display:grid;gap:12px;}
-.game-card{background:#141820;padding:12px;border-radius:8px;display:flex;align-items:center;gap:12px;border:1px solid #222;}
-.game-thumb{width:90px;height:70px;border-radius:8px;object-fit:cover;}
-.btn{background:#d69f2f;color:#000;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;margin-top:10px;}
-.btn:hover{background:#b88422;}
-.accordion{border:1px solid #222;border-radius:8px;overflow:hidden;margin-top:20px;}
-.hint{border-bottom:1px solid #222;}
-.hint button{
-  width:100%;padding:16px;background:#1a1f2a;color:#fff;text-align:left;border:none;display:flex;align-items:center;gap:12px;cursor:pointer;
+a{color:#d69f2f;}
+
+/* --- Spielekarten --- */
+.games-list,
+.gamesGrid{
+  display:grid;
+  gap:12px;
 }
+
+.game-card{
+  background:#141820;
+  padding:12px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid #222;
+}
+
+.game-thumb{
+  width:90px;
+  height:70px;
+  border-radius:8px;
+  object-fit:cover;
+}
+
+/* --- Buttons allgemein --- */
+.btn{
+  background:#d69f2f;
+  color:#000;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+.btn:hover{background:#b88422;}
+
+/* --- Hinweisliste (Akkordeon) --- */
+.accordion{
+  border:1px solid #222;
+  border-radius:8px;
+  overflow:hidden;
+  margin-top:20px;
+}
+
+.hint{border-bottom:1px solid #222;}
+
+.hint button{
+  width:100%;
+  padding:16px;
+  background:#1a1f2a;
+  color:#fff;
+  text-align:left;
+  border:none;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  font-size:16px;
+}
+
 .hint button:hover{background:#2a3140;}
 .hint.open button{background:#2e3848;}
-.hint .content{display:none;padding:16px;gap:16px;background:#10141b;}
-.hint.open .content{display:flex;}
-.photo img{width:180px;height:140px;border-radius:8px;object-fit:cover;}
-.footer{margin-top:40px;padding:20px;text-align:center;color:#888;border-top:1px solid #222;background:#111;}
-a{color:#d69f2f;}
+
+.hint .content{
+  display:none;
+  padding:16px;
+  gap:16px;
+  background:#10141b;
+}
+
+.hint.open .content{
+  display:flex;
+}
+
+/* --- Hinweisbilder größer & klickbar --- */
+.photo img{
+  width:260px;
+  height:auto;
+  border-radius:8px;
+  object-fit:cover;
+  cursor:pointer;
+}
+
+/* --- Vollbild Bildanzeige --- */
+#imgModal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+#imgModal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  box-shadow:0 0 15px #000;
+}
+
+#imgModal.closeArea{
+  cursor:pointer;
+}
+
+/* --- Bunter Titel ESCAPick-Welver --- */
+.multicolor-title span{
+  font-weight:inherit;
+}
+
+.c-red{color:#ff3b3b;}
+.c-blue{color:#3b6cff;}
+.c-yellow{color:#ffd93b;}
+.c-green{color:#4caf50;}
+.c-lightblue{color:#5ac8fa;}
+.multicolor-title{color:#ffffff;}
+
+/* --- Kontaktformular Schön & Modern --- */
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin-top:20px;
+}
+
+.form input,
+.form textarea{
+  width:100%;
+  padding:14px;
+  border-radius:8px;
+  border:1px solid #333;
+  background:#1a1f2a;
+  color:#e6eef6;
+  font-size:16px;
+}
+
+.form input::placeholder,
+.form textarea::placeholder{
+  color:#7a8699;
+}
+
+.form input:focus,
+.form textarea:focus{
+  border-color:#d69f2f;
+  outline:none;
+  background:#222a38;
+  box-shadow:0 0 5px rgba(214,159,47,0.4);
+}
+
+.form .btn{
+  background:#d69f2f;
+  color:#000;
+  font-size:17px;
+  padding:14px;
+  font-weight:bold;
+}
+
+.form .btn:hover{
+  background:#b88422;
+}
+
+/* Passwort-Eingabefeld für Spiel-Hinweise */
+input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1a1f2a;
+  color: #e6eef6;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+input[type="password"]::placeholder {
+  color: #7a8699;
+}
+
+input[type="password"]:focus {
+  border-color: #d69f2f;
+  outline: none;
+  background: #222a38;
+  box-shadow: 0 0 5px rgba(214, 159, 47, 0.4);
+}
+
+/* --- Footer --- */
+.footer{
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+  color:#888;
+  border-top:1px solid #222;
+  background:#111;
+}

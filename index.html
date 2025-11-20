@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Escape‑Welver</title>
+  <title>ESCAPick-Welver</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="header">
     <div class="brand">
-      <div class="logo">EW</div>
+      <div class="logo" onclick="goHome()">EW</div>
       <div>
-        <h1>Escape‑Welver</h1>
+        <h1 class="multicolor-title">
+		  <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
+		</h1>
         <p>Hinweise & Lösungen für eure Escape‑Room‑Rätsel</p>
       </div>
     </div>
@@ -26,16 +28,19 @@
   <main id="app">
     <section id="home" class="page">
       <div class="container">
-        <h2>Willkommen bei Escape‑Welver</h2>
-        <p>Ihr habt ein Escape‑Room‑Abenteuer gebucht? Hier könnt ihr während oder nach dem Spiel gezielt Hinweise abrufen — für Rätsel‑Boxen oder Räume.</p>
-        <p><strong>Wie es funktioniert:</strong></p>
+        <h1 class="multicolor-title">
+		  <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
+		</h1>
+        <p>Ihr habt Interesse an einem Escape-Abenteuer? Dann seit Ihr bei mir genau richtig. </p>
+        <p>Auf dieser Homepage gibt es nicht nur eine Auswahl, von meinen Escape-Abenteuern, sondern auch Escape-Boxen für zu Hause. <p/>
+		<p><strong>Wie es funktioniert:</strong></p>
         <ul>
           <li>Wählt euer Spiel aus der Liste.</li>
-          <li>Öffnet die einzelnen Hinweise (inkl. Bilder).</li>
-          <li>Falls nötig, könnt ihr die Lösung einblenden.</li>
+          <li>Hier gibt es Bilder vom Raum und einen Einblick in die Geschichte.</li>
+          <li>Falls ihr Euch für die Rätselbox entscheidet, könnt ihr über einen Passwortgeschützen Bereich, Hinweise und Lösungen einsehen.</li>
         </ul>
 
-        <h3>Aktive Spiele</h3>
+        <h3>Spiele wären zur Zeit</h3>
         <div id="gamesList" class="games-list"></div>
       </div>
     </section>
@@ -56,31 +61,32 @@
             <p id="gameShort" class="muted"></p>
           </div>
         </div>
-        <div id="hintsContainer"></div>
+        <div id="passwordGate">
+		  <p>Bitte Passwort eingeben, um die Hinweise zu sehen:</p>
+		  <input id="pwInput" type="password" placeholder="Passwort" class="form-input" />
+		  <button id="pwSubmit" class="btn">Bestätigen</button>
+		  <p id="pwError" class="hidden" style="color:red;">Passwort falsch!</p>
+		</div>
+		<div id="hintsContainer" class="hidden"></div>
+		
         <button id="btnBack" class="btn" onclick="navigate('games')">Zurück</button>
       </div>
     </section>
 
-    <section id="contact" class="page hidden">
-      <div class="container">
-        <h2>Kontakt</h2>
-        <form id="contactForm" class="form">
-          <input name="name" placeholder="Name" required />
-          <input name="email" type="email" placeholder="E‑Mail" required />
-          <textarea name="message" placeholder="Nachricht" rows="6" required></textarea>
-          <button class="btn">Absenden</button>
-        </form>
-      </div>
-    </section>
-  </main>
+	<section id="contact" class="page hidden">
+	  <div class="container">
+		<h2>Kontakt</h2>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Escape‑Welver — Alle Rechte vorbehalten</p>
-    <p>
-      <a href="#" onclick="navigate('impressum')">Impressum</a> •
-      <a href="#" onclick="navigate('datenschutz')">Datenschutz</a>
-    </p>
-  </footer>
+		<form id="contactForm" class="form">
+		  <input name="name" placeholder="Name" required />
+		  <input name="email" type="email" placeholder="E-Mail" required />
+		  <textarea name="message" placeholder="Nachricht" rows="6" required></textarea>
+		  <button class="btn">Absenden</button>
+		</form>
+
+	  </div>
+	</section>
+  </main>
 
   <section id="impressum" class="page hidden container small-text">
     <h2>Impressum</h2>
@@ -92,6 +98,18 @@
     <h2>Datenschutz</h2>
     <p>Beispiel‑Datenschutzerklärung. Bitte anpassen.</p>
   </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Escape‑Welver — Alle Rechte vorbehalten</p>
+    <p>
+      <a href="#" onclick="navigate('impressum')">Impressum</a> •
+      <a href="#" onclick="navigate('datenschutz')">Datenschutz</a>
+    </p>
+  </footer>
+  
+  <div id="imgModal" onclick="closeImage()">
+	<img id="modalImage" src="" />
+  </div>
 
   <script src="content.js"></script>
   <script src="app.js"></script>
