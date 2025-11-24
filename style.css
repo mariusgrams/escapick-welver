@@ -59,7 +59,12 @@ body{
 a{color:#d69f2f;}
 
 /* --- Spielekarten --- */
-.games-list,
+.games-list {
+  display: flex; /* Ensure consistent layout */
+  flex-direction: column;
+  gap: 1rem; /* Add spacing between items */
+}
+
 .gamesGrid{
   display:grid;
   gap:12px;
@@ -135,12 +140,25 @@ a{color:#d69f2f;}
 }
 
 /* --- Hinweisbilder größer & klickbar --- */
-.photo img{
+.photo img {
   width:260px;
   height:auto;
   border-radius:8px;
   object-fit:cover;
   cursor:pointer;
+}
+
+.game-thumb {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+}
+
+#gameTitleImage {
+  width: var(--title-image-width, 100%);
+  height: auto;
+  max-width: var(--title-image-max-width, 400px);
+  max-height: var(--title-image-max-height, 300px);
 }
 
 /* --- Vollbild Bildanzeige --- */
@@ -162,6 +180,7 @@ a{color:#d69f2f;}
   max-height:90%;
   border-radius:12px;
   box-shadow:0 0 15px #000;
+  cursor:pointer;
 }
 
 #imgModal.closeArea{
@@ -180,7 +199,7 @@ a{color:#d69f2f;}
 .c-lightblue{color:#5ac8fa;}
 .multicolor-title{color:#ffffff;}
 
-/* --- Kontaktformular Schön & Modern --- */
+/* --- Kontaktformular --- */
 .form{
   display:flex;
   flex-direction:column;
@@ -255,4 +274,21 @@ input[type="password"]:focus {
   color:#888;
   border-top:1px solid #222;
   background:#111;
+}
+
+/* --- Game Detail Layout --- */
+.game-detail-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.game-detail-layout img {
+  max-width: 300px; /* Limit the width of the image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: Add rounded corners */
+}
+
+.game-detail-layout p {
+  flex: 1; /* Allow the description to take up remaining space */
 }

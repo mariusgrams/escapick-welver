@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ESCAPick-Welver</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .games-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -20,7 +27,6 @@
 
     <nav id="mainNav" class="nav">
       <button class="nav-btn active" data-route="home">Home</button>
-      <button class="nav-btn" data-route="games">Spiele</button>
       <button class="nav-btn" data-route="contact">Kontakt</button>
     </nav>
   </header>
@@ -45,31 +51,55 @@
       </div>
     </section>
 
-    <section id="games" class="page hidden">
-      <div class="container">
-        <h2>Spiele</h2>
-        <div id="gamesGrid"></div>
-      </div>
-    </section>
-
     <section id="gameDetail" class="page">
       <div class="container">
-        <div class="game-header">
-          <img id="gameThumb" class="game-thumb" />
-          <div>
-            <h2 id="gameTitle"></h2>
-            <p id="gameShort" class="muted"></p>
+        <h2 id="gameTitle"></h2>
+        <div class="game-detail-layout">
+          <img id="gameTitleImage" class="game-thumb" onclick="openImage(this.src)" />
+          <p id="gameDescription" class="muted"></p>
+        </div>
+        <div id="gameAdditionalDetails">
+          <div id="gameBuiltOrBoughtContainer">
+            <h3>Selbst gebaut oder gekauft</h3>
+            <p id="gameBuiltOrBought"></p>
+          </div>
+          <div id="gameAvailableSinceContainer">
+            <h3>Verfügbar seit</h3>
+            <p id="gameAvailableSince"></p>
+          </div>
+          <div id="gameDurationContainer">
+            <h3>Spieldauer</h3>
+            <p id="gameDuration"></p>
+          </div>
+          <div id="gameRoomSizeContainer">
+            <h3>Raumgröße</h3>
+            <p id="gameRoomSize"></p>
+          </div>
+          <div id="gamePlayableContainer">
+            <h3>Spielbar</h3>
+            <p id="gamePlayable"></p>
+          </div>
+          <div id="gameSpecialFeaturesContainer">
+            <h3>Besonderheiten</h3>
+            <p id="gameSpecialFeatures"></p>
+          </div>
+          <div id="gameIdeaOriginContainer">
+            <h3>Wie kam es zu dieser Idee</h3>
+            <p id="gameIdeaOrigin"></p>
           </div>
         </div>
-        <div id="passwordGate">
-		  <p>Bitte Passwort eingeben, um die Hinweise zu sehen:</p>
-		  <input id="pwInput" type="password" placeholder="Passwort" class="form-input" />
-		  <button id="pwSubmit" class="btn">Bestätigen</button>
-		  <p id="pwError" class="hidden" style="color:red;">Passwort falsch!</p>
-		</div>
-		<div id="hintsContainer" class="hidden"></div>
-		
-        <button id="btnBack" class="btn" onclick="navigate('games')">Zurück</button>
+        <div id="passwordGate" class="hidden">
+          <p>Bitte Passwort eingeben, um die Hinweise zu sehen:</p>
+          <input id="pwInput" type="password" placeholder="Passwort" class="form-input" />
+          <button id="pwSubmit" class="btn">Bestätigen</button>
+          <p id="pwError" class="hidden" style="color:red;">Passwort falsch!</p>
+		    </div>
+		  <div id="hintsContainer" class="hidden"></div>
+      <div id="gameAdditionalImages" class="game-images">
+        <h3>Weitere Bilder</h3>
+        <div id="additionalImagesContainer"></div>
+      </div>
+      <button id="btnBack" class="btn hidden" onclick="navigate('home')">Zurück</button>
       </div>
     </section>
 
