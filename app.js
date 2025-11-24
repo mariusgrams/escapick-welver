@@ -33,7 +33,6 @@ function renderGames() {
 
 let currentGame = null;
 
-// --- SPIEL ÖFFNEN ---
 function openGame(id) {
   const g = games.find(x => x.id === id);
   currentGame = g;
@@ -42,37 +41,47 @@ function openGame(id) {
   document.getElementById('gameShort').textContent = g.short;
   document.getElementById('gameThumb').src = g.image;
 
-  // Password-Gate zeigen, Fehler ausblenden
-  document.getElementById('passwordGate').classList.remove("hidden");
-  document.getElementById('pwInput').value = "";
+  // ALLES zuerst verstecken!
+  document.getElementById('passwordGate').classList.add("hidden");
+  document.getElementById('hintsContainer').classList.add("hidden");
   document.getElementById('pwError').classList.add("hidden");
 
-  // Hinweise verstecken
-  document.getElementById('hintsContainer').classList.add("hidden");
-
-  // Hinweise aufbauen
+  // Hinweise vorbereiten
   renderHints(g);
+
+  if (g.isPasswordProtected) {
+    // Passwortbereich anzeigen
+    document.getElementById('passwordGate').classList.remove("hidden");
+    document.getElementById('pwInput').value = "";
+  } else {
+    // Hinweise ohne Passwort anzeigen
+    document.getElementById('hintsContainer').classList.remove("hidden");
+  }
 
   navigate('gameDetail');
 }
 
 // Passwortprüfung
 document.getElementById("pwSubmit").addEventListener("click", () => {
-  const input = document.getElementById("pwInput").value;
-
   if (!currentGame) return;
 
-  if (input === currentGame.passwort) {
-
-    // Passwort richtig → Gate verstecken, Hinweise anzeigen
+  // Falls das Spiel NICHT passwortgeschützt ist → direkt freischalten
+  if (!currentGame.isPasswordProtected) {
     document.getElementById("passwordGate").classList.add("hidden");
     document.getElementById("hintsContainer").classList.remove("hidden");
+    return;
+  }
 
+  const input = document.getElementById("pwInput").value;
+
+  if (input === currentGame.password) {
+    document.getElementById("passwordGate").classList.add("hidden");
+    document.getElementById("hintsContainer").classList.remove("hidden");
   } else {
-    // Fehler
     document.getElementById("pwError").classList.remove("hidden");
   }
 });
+
 
 // --- Hinweise dyn. erzeugen ---
 function renderHints(g) {
