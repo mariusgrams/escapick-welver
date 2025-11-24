@@ -188,10 +188,28 @@ function goHome() {
   const gameTitleImage = document.getElementById('gameTitleImage');
   gameTitleImage.onclick = null;
 
+  // Hide additional details and images on the home page
+  const detailContainers = [
+    'gameBuiltOrBoughtContainer',
+    'gameAvailableSinceContainer',
+    'gameDurationContainer',
+    'gameRoomSizeContainer',
+    'gamePlayableContainer',
+    'gameSpecialFeaturesContainer',
+    'gameIdeaOriginContainer',
+    'gameAdditionalImages'
+  ];
+  detailContainers.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
   // Navigation Highlight für die Home-Taste setzen
   const navButtons = document.querySelectorAll('.nav-btn');
   navButtons.forEach(btn => btn.classList.remove('active'));
   document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
 }
+
+// Ensure additional details and images are hidden on page load
+goHome();
 
 renderGames();
