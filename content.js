@@ -22,23 +22,23 @@ const games=[
   {
     id:"2",
     title:"Das Geheimnis von Professor T. (Rätselbox)",
-    titleImage:"https://picsum.photos/seed/box/300/200",
+    titleImage:"img/ratzellbox/title.jpg",
     description:"[Kurze Beschreibung hier einfügen]",
 	  isPasswordProtected:true,
 	  password:"123456",
     hints:[
-      {text:"Sieh dir das Schloss mal genauer an. Vielleicht findest du da eine Ähnlichkeit gegenüber anderer Sachen.", image:"img/rätzellbox/hinweis_1.jpg"},
-      {text:"Das Schloss und das Emblem auf dem Deckel sind doch Baugleich.",image:"img/rätzellbox/hinweis_2.jpg"},
-      {text:"Achte auf die Reihenfolge der Farben.",image:"img/rätzellbox/hinweis_3.jpg"},
-      {text:"Verbinde nun die Muster.",image:"img/rätzellbox/hinweis_4.jpg"},
-      {text:"Die Summe der Hinweise ergibt die Lösung.",image:"img/rätzellbox/hinweis_5.jpg"}
+      {text:"Sieh dir das Schloss mal genauer an. Vielleicht findest du da eine Ähnlichkeit gegenüber anderer Sachen.", image:"img/ratzellbox/hinweis_1.jpg"},
+      {text:"Das Schloss und das Emblem auf dem Deckel sind doch Baugleich.",image:"img/ratzellbox/hinweis_2.jpg"},
+      {text:"Achte auf die Reihenfolge der Farben.",image:"img/ratzellbox/hinweis_3.jpg"},
+      {text:"Verbinde nun die Muster.",image:"img/ratzellbox/hinweis_4.jpg"},
+      {text:"Die Summe der Hinweise ergibt die Lösung.",image:"img/ratzellbox/hinweis_5.jpg"}
     ],
-    builtOrBought: 'Selbst gebaut',
-    availableSince: 'N/A',
-    duration: 'N/A',
-    playable: 'N/A',
-    specialFeatures: 'N/A',
-    ideaOrigin: 'N/A',
+    builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
+    availableSince: '01. Januar 2025',
+    duration: 'Zwischen 75 und 90 Minuten',
+    playable: 'Jederzeit ;-) ',
+    specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
+    ideaOrigin: 'Das ich keine Räumlichkeiten mehr zur Verfügung hatte, aber noch reichlich Ideen im Kopf, dachte ich mir, so eine Rätselkiste hätte was ;-)',
     additionalImages: []
   }
 ];
