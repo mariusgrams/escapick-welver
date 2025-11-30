@@ -87,6 +87,7 @@ function openGame(id) {
   // Populate additional details
   populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
   populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
+  populateOrHide('gameDifficultyContainer', 'gameDifficulty', g.difficulty);
   populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
   populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
   populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
@@ -211,6 +212,7 @@ function goHome() {
   const detailContainers = [
     'gameBuiltOrBoughtContainer',
     'gameAvailableSinceContainer',
+    'gameDifficultyContainer',
     'gameDurationContainer',
     'gameRoomSizeContainer',
     'gamePlayableContainer',
@@ -270,6 +272,7 @@ function openGameWithoutHistory(id) {
 
   populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
   populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
+  populateOrHide('gameDifficultyContainer', 'gameDifficulty', g.difficulty);
   populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
   populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
   populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
@@ -322,6 +325,7 @@ function goHomeWithoutHistory() {
   const detailContainers = [
     'gameBuiltOrBoughtContainer',
     'gameAvailableSinceContainer',
+    'gameDifficultyContainer',
     'gameDurationContainer',
     'gameRoomSizeContainer',
     'gamePlayableContainer',
