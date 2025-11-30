@@ -155,6 +155,13 @@ document.getElementById("pwSubmit").addEventListener("click", () => {
   }
 });
 
+// Allow Enter key to submit password
+document.getElementById("pwInput").addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("pwSubmit").click();
+  }
+});
 
 // --- Hinweise dyn. erzeugen ---
 function renderHints(g) {

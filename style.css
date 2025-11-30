@@ -216,6 +216,7 @@ a{color:#d69f2f;}
   background:#1a1f2a;
   color:#e6eef6;
   font-size:16px;
+  box-sizing:border-box; /* Include padding in width calculation */
 }
 
 .form input::placeholder,
@@ -244,6 +245,10 @@ a{color:#d69f2f;}
 }
 
 /* Passwort-Eingabefeld für Spiel-Hinweise */
+#passwordGate {
+  margin-top: 30px; /* Add spacing above password section */
+}
+
 input[type="password"] {
   width: 100%;
   padding: 14px;
@@ -253,6 +258,7 @@ input[type="password"] {
   color: #e6eef6;
   font-size: 16px;
   margin-bottom: 10px;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 input[type="password"]::placeholder {
@@ -281,14 +287,129 @@ input[type="password"]:focus {
   display: flex;
   align-items: flex-start;
   gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .game-detail-layout img {
-  max-width: 300px; /* Limit the width of the image */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: Add rounded corners */
+  max-width: 300px;
+  width: 100%; /* Make image responsive */
+  height: auto;
+  border-radius: 8px;
 }
 
 .game-detail-layout p {
-  flex: 1; /* Allow the description to take up remaining space */
+  flex: 1;
+  min-width: 250px; /* Ensure text doesn't get too narrow */
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .game-detail-layout {
+    flex-direction: column; /* Stack vertically on mobile */
+  }
+  
+  .game-detail-layout img {
+    max-width: 100%; /* Full width on mobile */
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .game-thumb {
+    max-width: 100%;
+  }
+  
+  #gameTitleImage {
+    max-width: 100%;
+  }
+  
+  #additionalImagesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  #additionalImagesContainer img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .game-card {
+    flex-direction: row; /* Keep horizontal layout */
+    padding: 10px;
+  }
+  
+  .game-card img {
+    width: 80px; /* Smaller image on mobile */
+    height: 60px;
+    min-width: 80px; /* Prevent shrinking */
+  }
+  
+  .game-card h3 {
+    font-size: 1rem;
+  }
+  
+  .game-card .muted {
+    font-size: 0.85rem;
+  }
+  
+  .hint .content {
+    flex-direction: column; /* Stack hint image and text vertically on mobile */
+  }
+  
+  .photo img {
+    width: 100%; /* Make hint images full width on mobile */
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .multicolor-title {
+    font-size: 1.5rem;
+  }
+  
+  .header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .game-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .game-card img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    min-width: unset;
+  }
+  
+  .game-card h3 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .photo img {
+    max-width: 100%; /* Full width on very small screens */
+  }
 }
