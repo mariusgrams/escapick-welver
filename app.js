@@ -30,14 +30,10 @@ function renderGames() {
     const card = `
       <div class='game-card' onclick="openGame('${g.id}')">
         <img src='${g.titleImage}' class='game-thumb'/>
-        <div><h3>${g.title}</h3><p class='muted'>${getShortDescription(g.description)}</p></div>
+        <div><h3>${g.title}</h3><p class='muted'>${g.shortDescription}</p></div>
       </div>`;
     list.innerHTML += card; // Add the card to the list
   });
-}
-
-function getShortDescription(description, maxLength = 200) {
-  return description.length > maxLength ? description.slice(0, maxLength) + "..." : description;
 }
 
 let currentGame = null;
