@@ -132,8 +132,8 @@
   <footer class="footer">
     <p>© <span id="year"></span> ESCAPick-Welver — Alle Rechte vorbehalten</p>
     <p>
-      <a href="#" onclick="navigate('impressum')">Impressum</a> •
-      <a href="#" onclick="navigate('datenschutz')">Datenschutz</a>
+      <a href="#impressum" onclick="event.preventDefault(); history.pushState({ page: 'impressum' }, '', '#impressum'); navigate('impressum');">Impressum</a> •
+      <a href="#datenschutz" onclick="event.preventDefault(); history.pushState({ page: 'datenschutz' }, '', '#datenschutz'); navigate('datenschutz');">Datenschutz</a>
     </p>
   </footer>
   

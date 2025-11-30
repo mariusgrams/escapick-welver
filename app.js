@@ -11,6 +11,16 @@ function navigate(id) {
   } else {
     backButton.classList.add('hidden');
   }
+  
+  // Update navigation highlight
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => {
+    if (btn.dataset.route === id) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
 }
 
 // Navigation Highlight
@@ -18,7 +28,9 @@ const navButtons = document.querySelectorAll('.nav-btn');
 navButtons.forEach(btn => btn.addEventListener('click', () => {
   navButtons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  navigate(btn.dataset.route);
+  const route = btn.dataset.route;
+  history.pushState({ page: route }, '', `#${route}`);
+  navigate(route);
 }));
 
 // Render Game List (Home & Grid)
@@ -48,6 +60,9 @@ function setTitleImageSize(width, maxWidth, maxHeight) {
 function openGame(id) {
   const g = games.find(x => x.id === id);
   currentGame = g;
+
+  // Add to browser history
+  history.pushState({ page: 'gameDetail', gameId: id }, '', `#game/${id}`);
 
   document.getElementById('gameTitle').textContent = g.title;
   document.getElementById('gameDescription').textContent = g.description;
@@ -177,6 +192,7 @@ function closeImage() {
 }
 
 function goHome() {
+  history.pushState({ page: 'home' }, '', '#home');
   navigate('home');
   renderGames(); // Spieleliste erneut rendern
 
@@ -204,6 +220,119 @@ function goHome() {
   navButtons.forEach(btn => btn.classList.remove('active'));
   document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (event) => {
+  if (event.state) {
+    if (event.state.page === 'gameDetail' && event.state.gameId) {
+      // Avoid adding duplicate history entry
+      const currentState = history.state;
+      openGameWithoutHistory(event.state.gameId);
+      history.replaceState(currentState, '');
+    } else if (event.state.page === 'home') {
+      goHomeWithoutHistory();
+    } else {
+      navigate(event.state.page);
+    }
+  } else {
+    goHomeWithoutHistory();
+  }
+});
+
+// Helper function to open game without adding to history
+function openGameWithoutHistory(id) {
+  const g = games.find(x => x.id === id);
+  currentGame = g;
+
+  document.getElementById('gameTitle').textContent = g.title;
+  document.getElementById('gameDescription').textContent = g.description;
+  const gameTitleImage = document.getElementById('gameTitleImage');
+  gameTitleImage.src = g.titleImage;
+  gameTitleImage.onclick = () => openImage(g.titleImage);
+
+  function populateOrHide(containerId, contentId, value) {
+    const container = document.getElementById(containerId);
+    const content = document.getElementById(contentId);
+    if (value) {
+      container.style.display = 'block';
+      content.textContent = value;
+    } else {
+      container.style.display = 'none';
+    }
+  }
+
+  populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
+  populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
+  populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
+  populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
+  populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
+  populateOrHide('gameSpecialFeaturesContainer', 'gameSpecialFeatures', g.specialFeatures);
+  populateOrHide('gameIdeaOriginContainer', 'gameIdeaOrigin', g.ideaOrigin);
+
+  const additionalImagesContainer = document.getElementById('additionalImagesContainer');
+  const additionalImagesSection = document.getElementById('gameAdditionalImages');
+  if (g.additionalImages && g.additionalImages.length > 0) {
+    additionalImagesContainer.innerHTML = '';
+    g.additionalImages.forEach(image => {
+      const imgElement = document.createElement('img');
+      imgElement.src = image;
+      imgElement.alt = 'Zusätzliches Bild';
+      imgElement.classList.add('game-thumb');
+      imgElement.onclick = () => openImage(image);
+      additionalImagesContainer.appendChild(imgElement);
+    });
+    additionalImagesSection.style.display = 'block';
+  } else {
+    additionalImagesSection.style.display = 'none';
+  }
+
+  setTitleImageSize('80%', '400px', '300px');
+
+  document.getElementById('passwordGate').classList.add("hidden");
+  document.getElementById('hintsContainer').classList.add("hidden");
+  document.getElementById('pwError').classList.add("hidden");
+
+  renderHints(g);
+
+  if (g.isPasswordProtected) {
+    document.getElementById('passwordGate').classList.remove("hidden");
+    document.getElementById('pwInput').value = "";
+  } else {
+    document.getElementById('hintsContainer').classList.remove("hidden");
+  }
+
+  navigate('gameDetail');
+}
+
+// Helper function to go home without adding to history
+function goHomeWithoutHistory() {
+  navigate('home');
+  renderGames();
+
+  const gameTitleImage = document.getElementById('gameTitleImage');
+  gameTitleImage.onclick = null;
+
+  const detailContainers = [
+    'gameBuiltOrBoughtContainer',
+    'gameAvailableSinceContainer',
+    'gameDurationContainer',
+    'gameRoomSizeContainer',
+    'gamePlayableContainer',
+    'gameSpecialFeaturesContainer',
+    'gameIdeaOriginContainer',
+    'gameAdditionalImages'
+  ];
+  detailContainers.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach(btn => btn.classList.remove('active'));
+  document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
+}
+
+// Initialize with home page in history
+history.replaceState({ page: 'home' }, '', '#home');
 
 // Ensure additional details and images are hidden on page load
 goHome();
