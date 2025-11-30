@@ -133,10 +133,12 @@ a{color:#d69f2f;}
   padding:16px;
   gap:16px;
   background:#10141b;
+  flex-wrap: wrap; /* Allow wrapping */
 }
 
 .hint.open .content{
   display:flex;
+  flex-wrap: wrap; /* Ensure wrapping is active when open */
 }
 
 /* --- Hinweisbilder größer & klickbar --- */
@@ -374,11 +376,20 @@ input[type="password"]:focus {
   
   .hint .content {
     flex-direction: column; /* Stack hint image and text vertically on mobile */
+    align-items: flex-start; /* Align items to the start */
+  }
+  
+  .photo {
+    width: 100%; /* Make photo container full width */
   }
   
   .photo img {
     width: 100%; /* Make hint images full width on mobile */
-    max-width: 300px;
+    max-width: 100%; /* Override the 260px from base styles */
+  }
+  
+  .hint .content p {
+    width: 100%; /* Make text full width */
   }
 }
 
