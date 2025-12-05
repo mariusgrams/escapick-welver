@@ -78,19 +78,20 @@ function openGame(id) {
     const content = document.getElementById(contentId);
     if (value) {
       container.style.display = 'block';
-      content.textContent = value;
+      content.innerHTML = value;
     } else {
       container.style.display = 'none';
     }
   }
 
   // Populate additional details
-  populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
   populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
+  populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
+  populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
   populateOrHide('gameDifficultyContainer', 'gameDifficulty', g.difficulty);
   populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
-  populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
   populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
+  populateOrHide('gamePlayerSizeContainer', 'gamePlayerSize', g.playerSize);
   populateOrHide('gameSpecialFeaturesContainer', 'gameSpecialFeatures', g.specialFeatures);
   populateOrHide('gameIdeaOriginContainer', 'gameIdeaOrigin', g.ideaOrigin);
 
