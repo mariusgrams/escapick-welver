@@ -37,7 +37,7 @@ const games=[
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '2 bis 4 Spieler',
     playable: 'Nur noch auf Anfrage (der Raum ist eigentlich geschlossen)',
-    specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschieden Schlösser.',
+    specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
     ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
     additionalImages: []
   },
@@ -45,7 +45,7 @@ const games=[
     id:"2",
     title:"Die Erbschaft Kains",
     titleImage:"img/erbschaft-kains/title.jpg",
-    description:"Gutsherr Markus-Theodor Kains ist verstorben. Er war als Geschäftsführer, der Jung Berghoff Log GmbH (JBL), tätig und als Weinliebhaber, viel in Europa unterwegs. Da er aber nicht sehr beliebt war, streitet sich jetzt die Familie um die Erbschaft. Daher hat er den Angehörigen, viele Rätsel und Hindernisse in den Weg gestellt, damit man nicht so leicht an die Erbschaft kommt. Nachdem ihr nun Zugang zu dem Gutshof bekommen habt und den Stammbaum geordnet, würdet ihr gerne etwas vom Erbe abbekommen. Kriegt ihr das hin?",
+    description:"Gutsherr Markus-Theodor Kains ist verstorben. Er war als Geschäftsführer, der Jung Berghoff Log GmbH (JBL), tätig und als Weinliebhaber, viel in Europa unterwegs. Da er aber nicht sehr beliebt war, streitet sich jetzt die Familie um die Erbschaft. Daher hat er den Angehörigen, viele Rätsel und Hindernisse in den Weg gestellt, damit man nicht so leicht an die Erbschaft kommt. Nachdem ihr nun Zugang zu dem Gutshof bekommen habt und den Stammbaum geordnet habt, würdet ihr gerne etwas vom Erbe abbekommen. Kriegt ihr das hin?",
     shortDescription: "Der Gutsherr, Markus-Theodor Kains ist verstorben und hat sein Erbe auf dem Gutshof versteckt. Seid ihr gierig nach dem Erbe?",
     isPasswordProtected: false,
     password: "",

@@ -21,6 +21,11 @@ function navigate(id) {
       btn.classList.remove('active');
     }
   });
+
+  // Render prices when navigating to prices page
+  if (id === 'prices') {
+    renderPrices();
+  }
 }
 
 // Navigation Highlight
@@ -350,3 +355,25 @@ history.replaceState({ page: 'home' }, '', '#home');
 goHome();
 
 renderGames();
+
+// Render Prices List
+function renderPrices() {
+  const pricesList = document.getElementById('pricesList');
+  pricesList.innerHTML = ''; // Clear the list
+
+  prices.forEach(p => {
+    const priceCard = document.createElement('div');
+    priceCard.classList.add('price-card');
+    
+    const title = document.createElement('h3');
+    title.textContent = p.title;
+    
+    const description = document.createElement('p');
+    // Replace </br> with actual line breaks
+    description.innerHTML = p.description.replace(/<\/br>/gi, '<br>');
+    
+    priceCard.appendChild(title);
+    priceCard.appendChild(description);
+    pricesList.appendChild(priceCard);
+  });
+}

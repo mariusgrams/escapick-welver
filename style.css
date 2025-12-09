@@ -304,6 +304,32 @@ input[type="password"]:focus {
   min-width: 250px; /* Ensure text doesn't get too narrow */
 }
 
+/* --- Preisliste --- */
+.prices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 20px;
+}
+
+.price-card {
+  background: #141820;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #222;
+}
+
+.price-card h3 {
+  color: #d69f2f;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.price-card p {
+  margin: 0;
+  line-height: 1.8;
+}
+
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   .game-detail-layout {
