@@ -84,6 +84,9 @@ const games=[
     playable: 'Jederzeit ;-) ',
     specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
     ideaOrigin: 'Das ich keine Räumlichkeiten mehr zur Verfügung hatte, aber noch reichlich Ideen im Kopf, dachte ich mir, so eine Rätselkiste hätte was ;-)',
-    additionalImages: []
+    additionalImages: [
+		 'img/ratzellbox/1.jpg',
+		 'img/ratzellbox/2.jpg'
+		]
   }
 ];
