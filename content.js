@@ -39,7 +39,9 @@ const games=[
     playable: 'Nur noch auf Anfrage (der Raum ist eigentlich geschlossen)',
     specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
     ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
-    additionalImages: []
+    additionalImages: [
+      "img/fussballspiel/2.jpg"
+    ]
   },
   {
     id:"2",
@@ -60,7 +62,8 @@ const games=[
     specialFeatures: 'Dieser Raum ist mit Rätseln und Schlössern überhäuft, also genau das Richtige, für Tüftler und Rätselfreunde. 2 Stunden Spaß ;-)',
     ideaOrigin: 'Nach zwei Räumen auf der Dachterasse, die aber nur von April bis Oktober, spielbar sind, musste unbedingt drinnen ein Raum geschaffen werden.',
     additionalImages: [
-      'img/erbschaft-kains/1.jpg'
+      'img/erbschaft-kains/1.jpg',
+      'img/erbschaft-kains/2.jpg'
     ]
   },
   {
