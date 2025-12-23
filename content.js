@@ -27,7 +27,7 @@ const games=[
   {
     id:"1",
     title:"Das Fussballspiel (nur auf Anfrage spielbar)",
-    titleImage:"img/fussballspiel/1.jpg",
+    titleImage:"img/fussballspiel/title.png",
     description:"Ihr seid Fussballfans vom FC St. Pauli und wahre Fans, helfen ihrem Verein, wo es nur geht. Am Wochenende steht das Derby, gegen den Hamburger SV, an. Derbys haben eine grosse Bedeutung und daher ist die Unterstützung sehr wichtig. Deshalb versucht ihr, in einer Nacht und Nebel Aktion, in das Vereinsheim vom Hamburger SV zu gelangen. Hier versprecht ihr Euch, wichtige Details zufinden, damit es mit einem Sieg, am Wochenende, klappt. Doch dafür habt ihr nur 90 Minuten Zeit. Viel Erfolg !!!!",
     shortDescription: "Der richtige Raum für Fussballfans, doch auch ohne Fussballverstand, kann er problemlos gespielt werden. Traut ihr Euch?",
     isPasswordProtected: false,
