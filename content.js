@@ -7,7 +7,7 @@ const games=[
     shortDescription: "In einem Studentenzimmer wurde der Impfstoff gegen Covid-19 versteckt. Könnt ihr ihn finden?",
 	  isPasswordProtected: false,
     password: "",
-    hints:[],
+    puzzles: [],
     builtOrBought: 'Selbst gebaut im Lockdown (Bauzeit: ca. 6 Wochen)',
     availableSince: '14.06.2020',
     difficulty: '1,5 von 5 Sternen',
@@ -32,7 +32,7 @@ const games=[
     shortDescription: "Der richtige Raum für Fussballfans, doch auch ohne Fussballverstand, kann er problemlos gespielt werden. Traut ihr Euch?",
     isPasswordProtected: false,
     password: "",
-    hints:[],
+    puzzles: [],
     builtOrBought: 'Selbst gebaut, mit Unterstützung meines Schwagers (Bauzeit: etwa 6 Monate)',
     availableSince: '06. Dezember 2020',
     difficulty: '3 von 5 Sternen',
@@ -57,7 +57,7 @@ const games=[
     shortDescription: "Der Gutsherr, Markus-Theodor Kains ist verstorben und hat sein Erbe auf dem Gutshof versteckt. Seid ihr gierig nach dem Erbe?",
     isPasswordProtected: false,
     password: "",
-    hints:[],
+    puzzles: [],
     builtOrBought: 'Selbst gebaut - Elektronik vom Schwager (Bauzeit: 708 Tage)',
     availableSince: '02. Januar 2023',
     difficulty: '4 von 5 Sternen',
@@ -83,12 +83,97 @@ const games=[
 	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. Könnt ihr das Geheimnis lösen?",
 	  isPasswordProtected: true,
 	  password: "123456",
-    hints:[
-      {text:"Sieh dir das Schloss mal genauer an. Vielleicht findest du da eine Ähnlichkeit gegenüber anderer Sachen.", image:"img/ratzellbox/hinweis_1.jpg"},
-      {text:"Das Schloss und das Emblem auf dem Deckel sind doch Baugleich.",image:"img/ratzellbox/hinweis_2.jpg"},
-      {text:"Achte auf die Reihenfolge der Farben.",image:"img/ratzellbox/hinweis_3.jpg"},
-      {text:"Verbinde nun die Muster.",image:"img/ratzellbox/hinweis_4.jpg"},
-      {text:"Die Summe der Hinweise ergibt die Lösung.",image:"img/ratzellbox/hinweis_5.jpg"}
+    puzzles: [
+      {
+        image: "img/ratzellbox/ratzel_1.jpg",
+        texts: [
+          "Schaut Euch das Schloss mal genauer an. Vielleicht findet Ihr da eine Ähnlichkeit, gegenüber anderer Sachen an der Kiste.",
+          "Das Schloss und das Emblem auf dem Deckel sind doch Baugleich.",
+          "Bei dem Schloss müssen die Knöpfe reingedrückt werden, wo im Emblem, ein Bild plaziert ist."
+        ],
+        solution: "Das wären 2,3 und 5. Mit dem unteren Hebel lässt sich dann, das Schloss, öffnen."
+      },
+      {
+        image: "img/ratzellbox/ratzel_2.jpg",
+        texts: [
+          "Eine 3 stellige Zahl wird gesucht. Schaut Euch erstmal den 2ten Satz an und du kannst schon mal 3 Zahlen ausschließen.",
+          "Beim ersten Satz bleibt dadurch noch eine Zahl übrig, welche auch an der richtigen Stelle steht. 8 ? ?",
+          "Der dritte Satz sagt dann, das noch 5 und 0 gebraucht werden. Eine Zahl steht an der richtigen Stelle, als die 0 passt und die 5 muss ans Ende."
+        ],
+        solution: "Mit 805 lässt sich das Schloss öffnen."
+      },
+      {
+        image: "img/ratzellbox/ratzel_3.jpg",
+        texts: [
+          "Beim Sudoku kann man nicht viel helfen. In jeder Reihe, waagerecht und senkrecht, sowie im 9erKasten kommen die Zahlen 1 bis 9 vor.",
+          "Wichtig sind die Zahlen, welche im Rechteck, Kreis und Kreuz stehen. Nur diese Zahlen werden gebraucht.",
+          "Kreis ist 4, Rechteck ist 1 und Kreuz 1."
+        ],
+        solution: "Jetzt könnt Ihr es mit 141 öffnen."
+      },
+      {
+        image: "img/ratzellbox/ratzel_4.jpg",
+        texts: [
+          "Hier sieht man viele Symbole. Versucht sie mal, von links nach rechts, zu benennen. Vielleicht fällt Euch was auf.",
+          "Auto, Ball, Cabrio, Dose etc. Alles nach dem Alphabet sortiert. Also fehlt Euch was mit F, V und Z.",
+          "Findet Ihr Zahlen mit diesen Buchstaben? Dann erst die Zahl mit einem ?, dann zwei und zum Schluß drei. Also Vier, Fünf, Zwei. "
+        ],
+        solution: "Mit 452 lässt sich das Schloss öffnen"
+      },
+      {
+        image: "img/ratzellbox/ratzel_5.jpg",
+        texts: [
+          "Hier wurden Farben, den jeweiligen Zahlen hinzugefügt. Ihr müsst herausfinden, wo Gelb, Schwarz, Braun und Grau hinzugefügt werden müssten. ",
+          "Rot ist bei 3, Rosa und Pink bei 4, Gruen und Weiss bei 5, Orange bei 6, Violett bei 7, Hellblau bei 8, Hellgruen bei 9. Warum?",
+          "Die Farben werden deren Zahl zugeordnet, wie viele Buchstaben das Wort hat. Also Gelb (4), Schwarz (7), Braun (5), Grau (4)."
+        ],
+        solution: "4754 ist der Code für das Schloss."
+      },
+      {
+        image: "img/ratzellbox/ratzel_6.jpg",
+        texts: [
+          "Zieht ruhig die Schublade ganz heraus und betrachtet es von der rechten Seite. Was seht Ihr von links nach rechts?",
+          "Nein, das sind keine Eier, sondern Wachteleier ;-) dann Schnuller, Klavier und Schweinsköpfe. Angeordnet jeweils wie ein Würfel.",
+          "In jedem Wort versteckt sich eine Zahl. Welche Zahl ersetzt Würfel 1, 2, 3 und 4. Das ist die Reihenfolge."
+        ],
+        solution: "Ein Klavier (4), Zwei Wachteleier (8), Drei Schweinsköpfe (1), Vier Schnuller (0). 4810 ist für das Schloss."
+      },
+      {
+        image: "img/ratzellbox/ratzel_7.jpg",
+        texts: [
+          "Hier wird ein Lied oder Reimgesucht.",
+          "4 Wörter sind hier abgebildet und diese Zahlen sollen benutzt werden.",
+          "Messer (4), Gabel (8), Schere (9), Licht (6) ist für kleine Kinder nichts."
+        ],
+        solution: "4896 ist die Lösung"
+      },
+      {
+        image: "img/ratzellbox/ratzel_8.jpg",
+        texts: [
+          "Hier seht Ihr drei Objekte, die alle zu einem Land gehören. Schaut Euch mal die Länder auf der Kiste an.",
+          "Welche Objekte sind es? Das erste ist Knoblauch und die anderen? Ein bestimmtes Boot und anderes Wort für Möhre.",
+          "Knoblauch, Segelboot und Karotte verstecken was in ihrem Wort."
+        ],
+        solution: "Blau, Gelb, Rot sind die Farben der Flagge von Rumänien. Rümänien ist 507."
+      },
+      {
+        image: "img/ratzellbox/ratzel_9.jpg",
+        texts: [
+          "Hier geht es nur um die linke Seite. Findet ihr einen Kompass auf dieser Kiste?",
+          "Kann man wohl die Rückseite abnehmen? Der Kompass hat North, East, South und West. Schweden ist abgekürzt SWE.",
+          "Schaut mal in die Richtung von SWE, also South, West, East. Welcher Morsecode ist das."
+        ],
+        solution: "S = ..... (5), W = -..... (6), E = ....- (4) macht 564."
+      },
+      {
+        image: "img/ratzellbox/ratzel_10.jpg",
+        texts: [
+          "Hier geht es um die rechte Seite. Ausschlaggebend sind die Flaggen der Länder. ",
+          " Dänemark hat die Flagge gedreht, da es sich um ein Pluszeichen handelt. Bei den anderen geht es um die Farben in der Flagge.",
+          "Es gibt auch für die einzelnen Farben, Zahlen an der Kiste. Armenien mit 3 Farben + Jemen mit 3 Farben."
+        ],
+        solution: "Armenien (rot/blau/gelb = 412) plus (Dänemark) Jemen (rot/weiß/schwarz = 406) macht 818 als Lösung."
+      }
     ],
     builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
     availableSince: '01. Januar 2025',

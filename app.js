@@ -85,7 +85,6 @@ function openGame(id) {
   // Enable full-screen viewing for the title image in the game detail view
   gameTitleImage.onclick = () => openImage(g.titleImage);
 
-  // Helper function to populate or hide sections
   function populateOrHide(containerId, contentId, value) {
     const container = document.getElementById(containerId);
     const content = document.getElementById(contentId);
@@ -131,19 +130,18 @@ function openGame(id) {
 
   // ALLES zuerst verstecken!
   document.getElementById('passwordGate').classList.add("hidden");
-  document.getElementById('hintsContainer').classList.add("hidden");
+  document.getElementById('puzzleContainer').classList.add("hidden");
   document.getElementById('pwError').classList.add("hidden");
 
-  // Hinweise vorbereiten
-  renderHints(g);
-
+  // Puzzles vorbereiten
   if (g.isPasswordProtected) {
-    // Passwortbereich anzeigen
     document.getElementById('passwordGate').classList.remove("hidden");
     document.getElementById('pwInput').value = "";
+    document.getElementById('puzzleContainer').classList.add("hidden");
   } else {
-    // Hinweise ohne Passwort anzeigen
-    document.getElementById('hintsContainer').classList.remove("hidden");
+    document.getElementById('passwordGate').classList.add("hidden");
+    document.getElementById('puzzleContainer').classList.remove("hidden");
+    renderPuzzles(g);
   }
 
   navigate('gameDetail');
@@ -153,10 +151,10 @@ function openGame(id) {
 document.getElementById("pwSubmit").addEventListener("click", () => {
   if (!currentGame) return;
 
-  // Falls das Spiel NICHT passwortgeschützt ist → direkt freischalten
   if (!currentGame.isPasswordProtected) {
     document.getElementById("passwordGate").classList.add("hidden");
-    document.getElementById("hintsContainer").classList.remove("hidden");
+    document.getElementById("puzzleContainer").classList.remove("hidden");
+    renderPuzzles(currentGame);
     return;
   }
 
@@ -164,7 +162,8 @@ document.getElementById("pwSubmit").addEventListener("click", () => {
 
   if (input === currentGame.password) {
     document.getElementById("passwordGate").classList.add("hidden");
-    document.getElementById("hintsContainer").classList.remove("hidden");
+    document.getElementById("puzzleContainer").classList.remove("hidden");
+    renderPuzzles(currentGame);
   } else {
     document.getElementById("pwError").classList.remove("hidden");
   }
@@ -177,29 +176,6 @@ document.getElementById("pwInput").addEventListener("keypress", (event) => {
     document.getElementById("pwSubmit").click();
   }
 });
-
-// --- Hinweise dyn. erzeugen ---
-function renderHints(g) {
-  const hc = document.getElementById('hintsContainer');
-  hc.innerHTML = "";
-
-  g.hints.forEach((h, i) => {
-    hc.innerHTML += `
-      <div class='accordion hint' id='hint${i}'>
-        <button onclick="toggleHint(${i})">Hinweis ${i + 1}</button>
-        <div class='content'>
-          <div class='photo'>
-			<img src='${h.image}' onclick="openImage('${h.image}')"/>
-		  </div>
-          <p>${h.text}</p>
-        </div>
-      </div>`;
-  });
-}
-
-function toggleHint(i) {
-  document.getElementById(`hint${i}`).classList.toggle('open');
-}
 
 function openImage(src) {
   const modal = document.getElementById("imgModal");
@@ -313,47 +289,20 @@ function openGameWithoutHistory(id) {
   setTitleImageSize('80%', '400px', '300px');
 
   document.getElementById('passwordGate').classList.add("hidden");
-  document.getElementById('hintsContainer').classList.add("hidden");
+  document.getElementById('puzzleContainer').classList.add("hidden");
   document.getElementById('pwError').classList.add("hidden");
-
-  renderHints(g);
 
   if (g.isPasswordProtected) {
     document.getElementById('passwordGate').classList.remove("hidden");
     document.getElementById('pwInput').value = "";
+    document.getElementById('puzzleContainer').classList.add("hidden");
   } else {
-    document.getElementById('hintsContainer').classList.remove("hidden");
+    document.getElementById('passwordGate').classList.add("hidden");
+    document.getElementById('puzzleContainer').classList.remove("hidden");
+    renderPuzzles(g);
   }
 
   navigate('gameDetail');
-}
-
-// Helper function to go home without adding to history
-function goHomeWithoutHistory() {
-  navigate('home');
-  renderGames();
-
-  const gameTitleImage = document.getElementById('gameTitleImage');
-  gameTitleImage.onclick = null;
-
-  const detailContainers = [
-    'gameBuiltOrBoughtContainer',
-    'gameAvailableSinceContainer',
-    'gameDifficultyContainer',
-    'gameDurationContainer',
-    'gameRoomSizeContainer',
-    'gamePlayableContainer',
-    'gameSpecialFeaturesContainer',
-    'gameIdeaOriginContainer',
-    'gameAdditionalImages'
-  ];
-  detailContainers.forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-
-  const navButtons = document.querySelectorAll('.nav-btn');
-  navButtons.forEach(btn => btn.classList.remove('active'));
-  document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
 }
 
 // Initialize with home page in history
@@ -384,4 +333,145 @@ function renderPrices() {
     priceCard.appendChild(description);
     pricesList.appendChild(priceCard);
   });
+}
+
+// --- Puzzles rendern ---
+function renderPuzzles(game) {
+  const container = document.getElementById('puzzleContainer');
+  container.innerHTML = '';
+
+  if (!game.puzzles || game.puzzles.length === 0) {
+    container.innerHTML = '<p>Keine Puzzles vorhanden.</p>';
+    return;
+  }
+
+  game.puzzles.forEach((puzzle, pIdx) => {
+    const puzzleDetails = document.createElement('details');
+    puzzleDetails.className = 'puzzle-block';
+    puzzleDetails.style.margin = '1.0rem 0';
+    puzzleDetails.style.border = '1px solid #222';
+    puzzleDetails.style.borderRadius = '10px';
+    puzzleDetails.style.background = '#141820';
+    puzzleDetails.style.boxShadow = '0 2px 8px #0003';
+
+    const puzzleSummary = document.createElement('summary');
+    puzzleSummary.innerHTML = `<span style="font-size:1.2em;font-weight:bold;color:#e6eef6;">❓ Rätsel ${pIdx + 1}</span>`;
+    puzzleSummary.style.padding = '1rem';
+    puzzleSummary.style.cursor = 'pointer';
+    puzzleDetails.appendChild(puzzleSummary);
+
+    if (puzzle.image) {
+      const img = document.createElement('img');
+      img.src = puzzle.image;
+      img.alt = `Puzzle ${pIdx + 1}`;
+      img.style.maxWidth = '250px';
+      img.style.display = 'block';
+      img.style.margin = '1rem auto 1rem auto';
+      img.style.borderRadius = '8px';
+      img.style.boxShadow = '0 2px 8px #0003';
+      img.onclick = () => openImage(puzzle.image);
+      puzzleDetails.appendChild(img);
+    }
+
+    if (Array.isArray(puzzle.texts) && puzzle.texts.length > 0) {
+      const hintsList = document.createElement('div');
+      hintsList.className = 'hints-list';
+      hintsList.style.margin = '1rem 0 1rem 0';
+      hintsList.style.paddingLeft = '0.5rem';
+
+      puzzle.texts.forEach((hint, hIdx) => {
+        const hintDetails = document.createElement('details');
+        hintDetails.className = 'hint-block';
+        hintDetails.style.margin = '0.5rem 0';
+        hintDetails.style.background = '#1a1f2a';
+        hintDetails.style.borderRadius = '7px';
+        hintDetails.style.border = '1px solid #222';
+
+        const hintSummary = document.createElement('summary');
+        hintSummary.innerHTML = `<span style="font-weight:500;color:#e6eef6;">💡 Hinweis ${hIdx + 1}</span>`;
+        hintSummary.style.padding = '0.5rem 1rem';
+        hintSummary.style.cursor = 'pointer';
+        hintDetails.appendChild(hintSummary);
+
+        const hintText = document.createElement('div');
+        hintText.textContent = hint;
+        hintText.style.padding = '0.5rem 1.5rem 1rem 1.5rem';
+        hintText.style.color = '#e6eef6';
+        hintDetails.appendChild(hintText);
+
+        hintsList.appendChild(hintDetails);
+      });
+      puzzleDetails.appendChild(hintsList);
+    }
+
+    if (puzzle.solution) {
+      const solutionDetails = document.createElement('details');
+      solutionDetails.className = 'solution-block';
+      solutionDetails.style.margin = '1rem 0 0.5rem 0';
+      solutionDetails.style.background = '#222a38';
+      solutionDetails.style.border = '1px solid #444';
+      solutionDetails.style.borderRadius = '7px';
+
+      const solutionSummary = document.createElement('summary');
+      solutionSummary.innerHTML = `<span style="font-weight:600;color:#e6eef6;">🔓 Lösung anzeigen</span>`;
+      solutionSummary.style.padding = '0.7rem 1rem';
+      solutionSummary.style.cursor = 'pointer';
+      solutionDetails.appendChild(solutionSummary);
+
+      const solutionText = document.createElement('div');
+      solutionText.textContent = puzzle.solution;
+      solutionText.style.padding = '0.7rem 1.5rem 1rem 1.5rem';
+      solutionText.style.color = '#e6eef6';
+      solutionText.style.fontWeight = '500';
+      solutionDetails.appendChild(solutionText);
+
+      puzzleDetails.appendChild(solutionDetails);
+    }
+
+    container.appendChild(puzzleDetails);
+  });
+}
+
+// Beispiel: Zeige Puzzles nach Passwortprüfung oder direkt, je nach Spiel
+function showGamePuzzles(game) {
+  const puzzleContainer = document.getElementById('puzzleContainer');
+  if (game.isPasswordProtected) {
+    puzzleContainer.classList.add('hidden');
+  } else {
+    puzzleContainer.classList.remove('hidden');
+    renderPuzzles(game);
+  }
+}
+
+// Passwortprüfung anpassen, damit nach Erfolg Puzzles angezeigt werden
+document.getElementById('pwSubmit').onclick = function() {
+  const pwInput = document.getElementById('pwInput');
+  const pwError = document.getElementById('pwError');
+  const gameId = window.currentGameId;
+  const game = games.find(g => g.id === gameId);
+  if (pwInput.value === game.password) {
+    pwError.classList.add('hidden');
+    document.getElementById('passwordGate').classList.add('hidden');
+    document.getElementById('puzzleContainer').classList.remove('hidden');
+    renderPuzzles(game);
+  } else {
+    pwError.classList.remove('hidden');
+  }
+};
+
+// Beim Anzeigen eines Spiels:
+function showGameDetails(gameId) {
+  // ...existing code...
+  window.currentGameId = gameId;
+  const game = games.find(g => g.id === gameId);
+  // ...existing code...
+  if (game.isPasswordProtected) {
+    document.getElementById('passwordGate').classList.remove('hidden');
+    document.getElementById('puzzleContainer').classList.add('hidden');
+  } else {
+    document.getElementById('passwordGate').classList.add('hidden');
+    document.getElementById('puzzleContainer').classList.remove('hidden');
+    renderPuzzles(game);
+  }
+  // ...existing code...
 }
