@@ -14,12 +14,15 @@ const games=[
     duration: '60 Minuten, aber man darf immer zu Ende spielen ;-) <br><br> Bestzeit: 53:12 Minuten am 07.05.2022',
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '1 bis 4 Spieler',
+    playTime: '60 Minuten',
     playable: 'Zwischen April und Oktober (Sommerzeit), oder auch an besonders guten Tagen',
     specialFeatures: 'Ein 1.0 Raum mit Zahlen- und Schlüsselschlösser (ideal für Neueinsteger)',
     ideaOrigin: 'Als leidenschaftlicher Escape-Room Spieler, war ich im ersten Lockdown gefangen und hatte zu viel Langeweile. Daher dachte ich mir, baust dir einen Raum selber ;-) Dieser kam bei Freunden und Bekannten gut an :-)',
     additionalImages: [
       "img/covid-19/covid19-1.jpg"
-    ]
+    ],
+    priceLine1: 'Raumpreis beträgt 15 € (Begrüßungsgeschenk)',
+    priceLine2: 'pro Person 10 €'
   },
   {
     id:"1",
@@ -36,12 +39,15 @@ const games=[
     duration: '90 Minuten plus Verlängerung ;-) <br><br> Bestzeit: 92:12 Minuten am 25.08.2024',
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '2 bis 4 Spieler',
+    playTime: '90 Minuten',
     playable: 'Nur noch auf Anfrage (der Raum ist eigentlich geschlossen)',
     specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
     ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
     additionalImages: [
       "img/fussballspiel/2.jpg"
-    ]
+    ],
+    priceLine1: 'Raumpreis beträgt 30 €',
+    priceLine2: 'pro Person 10 €'
   },
   {
     id:"2",
@@ -58,13 +64,16 @@ const games=[
     duration: 'Gut 2 Stunden könnten es werden ;-)',
     roomSize: '12,61 m² (Indoor)',
     playerSize: '2 bis 4 Spieler (dann wird es aber eng)',
+    playTime: '120 Minuten',
     playable: 'Ganzjährig (bevorzugt am Wochenende)',
     specialFeatures: 'Dieser Raum ist mit Rätseln und Schlössern überhäuft, also genau das Richtige, für Tüftler und Rätselfreunde. 2 Stunden Spaß ;-)',
     ideaOrigin: 'Nach zwei Räumen auf der Dachterasse, die aber nur von April bis Oktober, spielbar sind, musste unbedingt drinnen ein Raum geschaffen werden.',
     additionalImages: [
       'img/erbschaft-kains/1.jpg',
       'img/erbschaft-kains/2.jpg'
-    ]
+    ],
+    priceLine1: 'Raumpreis beträgt 40 €',
+    priceLine2: 'pro Person 10 €'
   },
   {
     id:"3",
@@ -84,12 +93,16 @@ const games=[
     builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
     availableSince: '01. Januar 2025',
     duration: 'Zwischen 75 und 90 Minuten',
+    playTime: '75 Minuten',
+    playerSize: '2 Personen',
     playable: 'Jederzeit ;-) ',
     specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
     ideaOrigin: 'Das ich keine Räumlichkeiten mehr zur Verfügung hatte, aber noch reichlich Ideen im Kopf, dachte ich mir, so eine Rätselkiste hätte was ;-)',
     additionalImages: [
 		 'img/ratzellbox/1.jpg',
 		 'img/ratzellbox/2.jpg'
-		]
+		],
+    priceLine1: 'Rätselkiste bei mir spielen - 50 €',
+    priceLine2: 'Rätselkiste für zu Hause ausleihen - 30 €'
   }
 ];

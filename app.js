@@ -47,9 +47,17 @@ function renderGames() {
     const card = `
       <div class='game-card' onclick="openGame('${g.id}')">
         <img src='${g.titleImage}' class='game-thumb'/>
-        <div><h3>${g.title}</h3><p class='muted'>${g.shortDescription}</p></div>
+        <div>
+          <h3>${g.title}</h3>
+          <p class='muted'>${g.shortDescription}</p>
+          <div class='game-info'>
+            <span><strong>Spieldauer:</strong> ${g.playTime}</span><br>
+            <span><strong>Spieleranzahl:</strong> ${g.playerSize}</span><br>
+            <span><strong>Preis:</strong> ${g.priceLine1}${g.priceLine2 ? ' / ' + g.priceLine2 : ''}</span>
+          </div>
+        </div>
       </div>`;
-    list.innerHTML += card; // Add the card to the list
+    list.innerHTML += card;
   });
 }
 
