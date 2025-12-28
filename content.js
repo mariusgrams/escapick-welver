@@ -170,16 +170,52 @@ const games=[
         image: "img/ratzellbox/ratzel_10.jpg",
         texts: [
           "Hier geht es um die rechte Seite. Ausschlaggebend sind die Flaggen der Länder. ",
-          " Dänemark hat die Flagge gedreht, da es sich um ein Pluszeichen handelt. Bei den anderen geht es um die Farben in der Flagge.",
+          "Dänemark hat die Flagge gedreht, da es sich um ein Pluszeichen handelt. Bei den anderen geht es um die Farben in der Flagge.",
           "Es gibt auch für die einzelnen Farben, Zahlen an der Kiste. Armenien mit 3 Farben + Jemen mit 3 Farben."
         ],
         solution: "Armenien (rot/blau/gelb = 412) plus (Dänemark) Jemen (rot/weiß/schwarz = 406) macht 818 als Lösung."
+      },
+      {
+        image: "img/ratzellbox/ratzel_11.jpg",
+        texts: [
+          "Trau Dich, Wer nicht hört, muss fühlen. Greif ruhig rein und fühle. Was fühlst du?",
+          "Hier sind vier römische Zahlen zu fühlen. Das erste ist ein C ........",
+          "Es sind C X C V - schaue auf die Tafel, was das für eine 3stellige Zahl das ist"
+        ],
+        solution: "CXCV = C=100, XC=90, V=5, also 195"
+      },
+      {
+        image: "img/ratzellbox/ratzel_12.jpg",
+        texts: [
+          "Im vorigen Fach lag auch ein Handy und hier sind drei Länder mit Telefonnummern. Versuch mal, jemanden zu erreichen.",
+          "Anrufen klappt wohl nicht, versuche es mal mit einer SMS. Wie war das früher?",
+          "66338866, heißt 2x auf die 6 tippen (N), 2x auf die 3 (E), 2x auf die 8 (U) und 2x auf die 6 (N) = NEUN"
+        ],
+        solution: "Singapur (NEUN) - Malta (DREI) - Spanien (EINS) - 931"
+      },
+      {
+        image: "img/ratzellbox/ratzel_13.jpg",
+        texts: [
+          "Als ihr die Kiste geöffnet habt, konnte man vorne links, ein weißes Rohr, herausziehen. Was kann man damit machen?",
+          "Auf der Rückseite sind vier Löcher zu erkennen. Könnte das war mit dem Rohr zutun haben?",
+          "Steckt das Rohr, in das erste Loch, von links und lest die Zahl (1) ab. Macht das mit den anderen Löchern genauso. "
+        ],
+        solution: "Erstes Loch (1), dann (8), nun (0) und zum Schluß (5). Also 1805 für das Schloß (Dubai). Jetzt wird gepuzzlet :-)"
+      },
+      {
+        image: "img/ratzellbox/ratzel_14.jpg",
+        texts: [
+          "Habt ihr das Puzzle auf der linke Fläche gelegt. Was kann man erkennen, außer viele Koffer. ",
+          "Schaut euch die Koffer mal genauer an und was habt ihr auf der Platte, der Rückseite, noch offen?",
+          "Benutzt die Crypt Codes mit den Koffern von oben nach unten, Reihe für Reihe."
+        ],
+        solution: "Linke Reihe, von oben nach unten (ACHT), mittlere Reihe (EINS), rechte Reihe (VIER) - 814 für das Schloß am Koffer"
       }
     ],
     builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
     availableSince: '01. Januar 2025',
     duration: 'Zwischen 75 und 90 Minuten',
-    playTime: '75 bis 90 Minuten',
+    playTime: '75 bis 90 Minuten - Bestzeit: 78:17 Minuten am 08.06.2025',
     playerSize: '2 Personen',
     playable: 'Jederzeit ;-) ',
     specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
