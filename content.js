@@ -14,14 +14,14 @@ const games=[
     duration: '60 Minuten, aber man darf immer zu Ende spielen ;-) <br><br> Bestzeit: 53:12 Minuten am 07.05.2022',
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '1 bis 4 Spieler',
-    playTime: '60 Minuten',
+    playTime: '50 bis 70 Minuten',
     playable: 'Zwischen April und Oktober (Sommerzeit), oder auch an besonders guten Tagen',
     specialFeatures: 'Ein 1.0 Raum mit Zahlen- und Schlüsselschlösser (ideal für Neueinsteger)',
     ideaOrigin: 'Als leidenschaftlicher Escape-Room Spieler, war ich im ersten Lockdown gefangen und hatte zu viel Langeweile. Daher dachte ich mir, baust dir einen Raum selber ;-) Dieser kam bei Freunden und Bekannten gut an :-)',
     additionalImages: [
       "img/covid-19/covid19-1.jpg"
     ],
-    priceLine1: 'Raumpreis beträgt 15 € (Begrüßungsgeschenk)',
+    priceLine1: 'Raumpreis beträgt 15 € (Einsteigerpreis)',
     priceLine2: 'pro Person 10 €'
   },
   {
@@ -39,7 +39,7 @@ const games=[
     duration: '90 Minuten plus Verlängerung ;-) <br><br> Bestzeit: 92:12 Minuten am 25.08.2024',
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '2 bis 4 Spieler',
-    playTime: '90 Minuten',
+    playTime: '75 bis 110 Minuten',
     playable: 'Nur noch auf Anfrage (der Raum ist eigentlich geschlossen)',
     specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
     ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
@@ -55,7 +55,7 @@ const games=[
     title:"Die Erbschaft Kains",
     titleImage:"img/erbschaft-kains/title.jpg",
     description:"Gutsherr Markus-Theodor Kains ist verstorben. Er war als Geschäftsführer, der Jung Berghoff Log GmbH (JBL), tätig und als Weinliebhaber, viel in Europa unterwegs. Da er aber nicht sehr beliebt war, streitet sich jetzt die Familie um die Erbschaft. Daher hat er den Angehörigen, viele Rätsel und Hindernisse in den Weg gestellt, damit man nicht so leicht an die Erbschaft kommt. Nachdem ihr nun Zugang zu dem Gutshof bekommen habt und den Stammbaum geordnet habt, würdet ihr gerne etwas vom Erbe abbekommen. Kriegt ihr das hin?",
-    shortDescription: "Der Gutsherr, Markus-Theodor Kains ist verstorben und hat sein Erbe auf dem Gutshof versteckt. Seid ihr gierig nach dem Erbe?",
+    shortDescription: "Der Gutsherr, Markus-Theodor Kains ist verstorben und hat sein Erbe auf dem Gutshof versteckt. <br> Möchtet ihr was vom Erbe abhaben?",
     isPasswordProtected: false,
     password: "",
     puzzles: [],
@@ -65,7 +65,7 @@ const games=[
     duration: 'Gut 2 Stunden könnten es werden ;-)',
     roomSize: '12,61 m² (Indoor)',
     playerSize: '2 bis 4 Spieler (dann wird es aber eng)',
-    playTime: '120 Minuten',
+    playTime: '100 bis 130 Minuten',
     playable: 'Ganzjährig (bevorzugt am Wochenende)',
     specialFeatures: 'Dieser Raum ist mit Rätseln und Schlössern überhäuft, also genau das Richtige, für Tüftler und Rätselfreunde. 2 Stunden Spaß ;-)',
     ideaOrigin: 'Nach zwei Räumen auf der Dachterasse, die aber nur von April bis Oktober, spielbar sind, musste unbedingt drinnen ein Raum geschaffen werden.',
@@ -73,7 +73,7 @@ const games=[
       'img/erbschaft-kains/1.jpg',
       'img/erbschaft-kains/2.jpg'
     ],
-    priceLine1: 'Raumpreis beträgt 40 €',
+    priceLine1: 'Raumpreis beträgt 50 €',
     priceLine2: 'pro Person 10 €'
   },
   {
@@ -81,7 +81,7 @@ const games=[
     title:"Das Geheimnis von Professor T. (Rätselbox)",
     titleImage:"img/ratzellbox/title.jpg",
     description:"In einer kleinen Stadt, lebte eins der berühmte Professor T., ein weltbekannter Abenteurer und Gelehrter, der für seine faszinierden Reisen bekannt war. Sein ganzes Leben hatte er unerforschte Länder bereist, Kulturen entdeckt und Schätze gesammelt. Doch eines Tages, nach einer Reise, kehrte er nicht zurück. Die Stadt war in Aufruhr, und das Gerücht machte die Runde, dass er ein großes Geheimnis entdeckt hatte, bevor er spurlos verschwand. Könnt ihr helfen ??????",
-	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. Könnt ihr das Geheimnis lösen?",
+	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. <br> Könnt ihr das Geheimnis von Professor T. lösen?",
 	  isPasswordProtected: true,
 	  password: "123456",
     puzzles: [
@@ -179,7 +179,7 @@ const games=[
     builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
     availableSince: '01. Januar 2025',
     duration: 'Zwischen 75 und 90 Minuten',
-    playTime: '75 Minuten',
+    playTime: '75 bis 90 Minuten',
     playerSize: '2 Personen',
     playable: 'Jederzeit ;-) ',
     specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
@@ -189,6 +189,6 @@ const games=[
 		 'img/ratzellbox/2.jpg'
 		],
     priceLine1: 'Rätselkiste bei mir spielen - 50 €',
-    priceLine2: 'Rätselkiste für zu Hause ausleihen - 30 €'
+    priceLine2: 'Rätselkiste für zu Hause ausleihen - 30 € (eigener Transport)'
   }
 ];
