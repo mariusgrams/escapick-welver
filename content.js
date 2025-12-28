@@ -44,6 +44,7 @@ const games=[
     specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
     ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
     additionalImages: [
+      "img/fussballspiel/1.jpg",
       "img/fussballspiel/2.jpg"
     ],
     priceLine1: 'Raumpreis beträgt 30 €',
