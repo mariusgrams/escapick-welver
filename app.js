@@ -341,7 +341,6 @@ function renderPuzzles(game) {
   container.innerHTML = '';
 
   if (!game.puzzles || game.puzzles.length === 0) {
-    container.innerHTML = '<p>Keine Puzzles vorhanden.</p>';
     return;
   }
 
