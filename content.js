@@ -62,7 +62,7 @@ const games=[
     builtOrBought: 'Selbst gebaut - Elektronik vom Schwager (Bauzeit: 708 Tage)',
     availableSince: '02. Januar 2023',
     difficulty: '4 von 5 Sternen',
-    duration: 'Gut 2 Stunden könnten es werden ;-)',
+    duration: 'Gut 2 Stunden könnten es werden ;-) <br> <br> Bestzeit: 99:38 Minuten am 20.03.2024',
     roomSize: '12,61 m² (Indoor)',
     playerSize: '2 bis 4 Spieler (dann wird es aber eng)',
     playTime: '100 bis 130 Minuten',
@@ -226,5 +226,28 @@ const games=[
 		],
     priceLine1: 'Rätselkiste bei mir spielen - 50 €',
     priceLine2: 'Rätselkiste für zu Hause ausleihen - 30 € (eigener Transport)'
+  },
+  {
+    id: "4",
+    title: "Spielshows (für jeden Anlass)",
+    titleImage: "img/Spielshow/title.jpg",
+    description: "",
+    shortDescription: "Genau das richtige für jeden Anlass, ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern u.v.m",
+    isPasswordProtected: false,
+    password: "",
+    puzzles: [],
+    builtOrBought: '',
+    availableSince: '',
+    difficulty: '',
+    duration: '',
+    roomSize: '',
+    playerSize: 'Bis zu 20 Personen (Jeder gegen Jeder, 1 gegen 1, 2 gegen 2, Teamspiele etc.)',
+    playTime: 'Variabel, zwischen 2 und 4 Stunden',
+    playable: '',
+    specialFeatures: '',
+    ideaOrigin: '',
+    additionalImages: [],
+    priceLine1: 'Raumpreis beträgt 50 €',
+    priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'
   }
 ];
