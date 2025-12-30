@@ -241,13 +241,13 @@ const games=[
     difficulty: '',
     duration: '',
     roomSize: '',
-    playerSize: 'Bis zu 20 Personen (Jeder gegen Jeder, 1 gegen 1, 2 gegen 2, Teamspiele etc.)',
+    playerSize: 'Bis zu 20 Personen (Jeder gegen Jeden, 1 gegen 1, 2 gegen 2, Teamspiele etc.)',
     playTime: 'Variabel, zwischen 2 und 4 Stunden',
     playable: '',
     specialFeatures: '',
     ideaOrigin: '',
     additionalImages: [],
-    priceLine1: 'Raumpreis beträgt 50 €',
+    priceLine1: '',
     priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'
   }
 ];

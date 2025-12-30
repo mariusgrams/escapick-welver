@@ -67,7 +67,7 @@ function renderGames() {
           <div class='game-info'>
             <span><strong>Spieldauer:</strong> ${g.playTime}</span><br>
             <span><strong>Spieleranzahl:</strong> ${g.playerSize}</span><br>
-            <span><strong>Preis:</strong> ${g.priceLine1}${g.priceLine2 ? ' / ' + g.priceLine2 : ''}</span>
+            <span><strong>Preis:</strong> ${g.priceLine1}${g.priceLine1 && g.priceLine2 ? ' / ' + g.priceLine2 : (g.priceLine2 ? g.priceLine2 : '')}</span>
           </div>
         </div>
       </div>`;
