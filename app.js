@@ -1,21 +1,26 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
-function navigate(id) {
+function navigate(id, options = {}) {
+  // Zeige die gewünschte Seite an
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-
-  // Zeige den Zurück-Button nur auf der Detailseite
-  const backButton = document.getElementById('btnBack');
-  if (id === 'gameDetail') {
-    backButton.classList.remove('hidden');
+  if (id.startsWith('game/')) {
+    document.getElementById('gameDetail').classList.remove('hidden');
+    document.getElementById('btnBack').classList.remove('hidden');
   } else {
-    backButton.classList.add('hidden');
+    document.getElementById(id).classList.remove('hidden');
+    // Zeige den Zurück-Button nur auf der Detailseite
+    const backButton = document.getElementById('btnBack');
+    if (id === 'gameDetail') {
+      backButton.classList.remove('hidden');
+    } else {
+      backButton.classList.add('hidden');
+    }
   }
-  
+
   // Update navigation highlight
   const navButtons = document.querySelectorAll('.nav-btn');
   navButtons.forEach(btn => {
-    if (btn.dataset.route === id) {
+    if (btn.dataset.route === id || (id.startsWith('game/') && btn.dataset.route === 'home')) {
       btn.classList.add('active');
     } else {
       btn.classList.remove('active');
@@ -25,6 +30,15 @@ function navigate(id) {
   // Render prices when navigating to prices page
   if (id === 'prices') {
     renderPrices();
+  }
+
+  // Nur pushState, wenn nicht durch popstate ausgelöst
+  if (!options.fromPopState) {
+    if (id.startsWith('game/')) {
+      history.pushState({ page: id }, '', `#${id}`);
+    } else {
+      history.pushState({ page: id }, '', `#${id}`);
+    }
   }
 }
 
@@ -74,15 +88,13 @@ function openGame(id) {
   const g = games.find(x => x.id === id);
   currentGame = g;
 
-  // Add to browser history
-  history.pushState({ page: 'gameDetail', gameId: id }, '', `#game/${id}`);
+  // Setze die URL und History korrekt auf #game/{id}
+  navigate(`game/${id}`);
 
   document.getElementById('gameTitle').textContent = g.title;
   document.getElementById('gameDescription').textContent = g.description;
   const gameTitleImage = document.getElementById('gameTitleImage');
   gameTitleImage.src = g.titleImage;
-
-  // Enable full-screen viewing for the title image in the game detail view
   gameTitleImage.onclick = () => openImage(g.titleImage);
 
   function populateOrHide(containerId, contentId, value) {
@@ -128,12 +140,10 @@ function openGame(id) {
   // Setze die Größe des titleImage (z. B. 80% Breite, max. 400px Breite, max. 300px Höhe)
   setTitleImageSize('80%', '400px', '300px');
 
-  // ALLES zuerst verstecken!
   document.getElementById('passwordGate').classList.add("hidden");
   document.getElementById('puzzleContainer').classList.add("hidden");
   document.getElementById('pwError').classList.add("hidden");
 
-  // Puzzles vorbereiten
   if (g.isPasswordProtected) {
     document.getElementById('passwordGate').classList.remove("hidden");
     document.getElementById('pwInput').value = "";
@@ -143,8 +153,6 @@ function openGame(id) {
     document.getElementById('puzzleContainer').classList.remove("hidden");
     renderPuzzles(g);
   }
-
-  navigate('gameDetail');
 }
 
 // Passwortprüfung
@@ -183,10 +191,24 @@ function openImage(src) {
 
   modalImg.src = src;
   modal.style.display = "flex";
+  // Füge einen neuen History-Eintrag für das Bild hinzu
+  history.pushState({ modal: 'img' }, '', '#img');
 }
+
+// Passe das Schließen an: Modal schließt nur, wenn außerhalb des Bildes geklickt wird
+document.getElementById("imgModal").onclick = function (e) {
+  // Nur schließen, wenn auf den Hintergrund (nicht das Bild) geklickt wird
+  if (e.target === this) {
+    closeImage();
+  }
+};
 
 function closeImage() {
   document.getElementById("imgModal").style.display = "none";
+  // Wenn das aktuelle Hash #img ist, gehe einen Schritt zurück in der History
+  if (location.hash === '#img') {
+    history.back();
+  }
 }
 
 function goHome() {
@@ -220,23 +242,58 @@ function goHome() {
   document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
 }
 
-// Handle browser back/forward buttons
-window.addEventListener('popstate', (event) => {
-  if (event.state) {
-    if (event.state.page === 'gameDetail' && event.state.gameId) {
-      // Avoid adding duplicate history entry
-      const currentState = history.state;
-      openGameWithoutHistory(event.state.gameId);
-      history.replaceState(currentState, '');
-    } else if (event.state.page === 'home') {
-      goHomeWithoutHistory();
-    } else {
-      navigate(event.state.page);
-    }
-  } else {
-    goHomeWithoutHistory();
-  }
+// Initiales Laden: Seite aus Hash oder Standardseite anzeigen
+window.addEventListener('DOMContentLoaded', () => {
+  handleHashNavigation();
 });
+
+// Browser-Navigation (Zurück/Vor) behandeln
+window.addEventListener('popstate', (event) => {
+  handleHashNavigation(true);
+});
+
+// Hash-Änderungen behandeln (z.B. direkte Eingabe in die Adresszeile)
+window.addEventListener('hashchange', () => {
+  handleHashNavigation(true);
+});
+
+// Passe handleHashNavigation an, um das Bildmodal zu schließen, wenn #img verlassen wird
+function handleHashNavigation(fromPopState = false) {
+  let hash = location.hash.replace('#', '');
+  // Bildmodal öffnen
+  if (hash === 'img') {
+    // Modal bleibt offen, nichts tun (openImage setzt das Modal)
+    // Falls Seite neu geladen wird mit #img, Modal schließen
+    if (document.getElementById("imgModal").style.display !== "flex") {
+      closeImage();
+    }
+    return;
+  } else {
+    // Wenn Modal offen ist, schließe es
+    if (document.getElementById("imgModal").style.display === "flex") {
+      document.getElementById("imgModal").style.display = "none";
+      // Nicht weiter navigieren, damit der Benutzer auf der aktuellen Seite bleibt
+      return;
+    }
+  }
+
+  if (hash.startsWith('game/')) {
+    // Spiel-Detailseite
+    const gameId = hash.split('/')[1];
+    if (gameId) {
+      openGame(gameId);
+      // Verhindere doppeltes pushState
+      // navigate setzt von sich aus pushState, daher hier mit Option
+      navigate(`game/${gameId}`, { fromPopState: true });
+    }
+  } else if (hash) {
+    navigate(hash, { fromPopState: true });
+    if (hash === 'home') renderGames();
+  } else {
+    navigate('home', { fromPopState: true });
+    renderGames();
+  }
+}
 
 // Helper function to open game without adding to history
 function openGameWithoutHistory(id) {
