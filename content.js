@@ -83,7 +83,7 @@ const games=[
     description:"In einer kleinen Stadt, lebte eins der berühmte Professor T., ein weltbekannter Abenteurer und Gelehrter, der für seine faszinierden Reisen bekannt war. Sein ganzes Leben hatte er unerforschte Länder bereist, Kulturen entdeckt und Schätze gesammelt. Doch eines Tages, nach einer Reise, kehrte er nicht zurück. Die Stadt war in Aufruhr, und das Gerücht machte die Runde, dass er ein großes Geheimnis entdeckt hatte, bevor er spurlos verschwand. Könnt ihr helfen ??????",
 	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. <br> Könnt ihr das Geheimnis von Professor T. lösen?",
 	  isPasswordProtected: true,
-	  password: "123456",
+	  password: "Marius1904",
     puzzles: [
       {
         image: "img/ratzellbox/ratzel_1.jpg",
@@ -224,8 +224,8 @@ const games=[
 		 'img/ratzellbox/1.jpg',
 		 'img/ratzellbox/2.jpg'
 		],
-    priceLine1: 'Rätselkiste bei mir spielen - 50 €',
-    priceLine2: 'Rätselkiste für zu Hause ausleihen - 30 € (eigener Transport)'
+    priceLine1: '',
+    priceLine2: 'Rätselkiste für 30 € (auch für zu Hause, aber eigener Transport)'
   },
   {
     id: "4",
