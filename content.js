@@ -21,8 +21,8 @@ const games=[
     additionalImages: [
       "img/covid-19/covid19-1.jpg"
     ],
-    priceLine1: 'Raumpreis beträgt 15 € (Einsteigerpreis)',
-    priceLine2: 'pro Person 10 €'
+    priceLine1: '',
+    priceLine2: 'Raumpreis beträgt 15 € (Einsteigerpreis) und 10 € für jede Person (z.B. 2 Personen = 35 €)'
   },
   {
     id:"1",
@@ -47,8 +47,8 @@ const games=[
       "img/fussballspiel/1.jpg",
       "img/fussballspiel/2.jpg"
     ],
-    priceLine1: 'Raumpreis beträgt 30 €',
-    priceLine2: 'pro Person 10 €'
+    priceLine1: '',
+    priceLine2: 'Raumpreis beträgt 30 € und 10 € für jede Person'
   },
   {
     id:"2",
@@ -73,8 +73,8 @@ const games=[
       'img/erbschaft-kains/1.jpg',
       'img/erbschaft-kains/2.jpg'
     ],
-    priceLine1: 'Raumpreis beträgt 50 €',
-    priceLine2: 'pro Person 10 €'
+    priceLine1: '',
+    priceLine2: 'Raumpreis beträgt 50 € und 10 € für jede Person'
   },
   {
     id:"3",
@@ -231,7 +231,7 @@ const games=[
     id:"4",
     title:"Die Mystery-Box mit dem ? (Coming soon - Februar 2026)",
     titleImage:"img/Mystery-Box/title.jpg",
-    description:"Ihr findet eine schwarze Holzkiste, mit weißen Fragezeichen. Doch, wie geht die Kiste auf? Man sieht keine Schlösser, keine Schlüssel, keine Griffe, einfach nichts, nur Holz. Wir brauchen auch, um diese Kiste zu öffnen. Wer weiß, was darin ist. Könnt ihr helfen? ",
+    description:"Ihr findet eine schwarze Holzkiste, mit weißen Fragezeichen. Doch, wie geht die Kiste auf? Man sieht keine Schlösser, keine Schlüssel, keine Griffe, einfach nichts, nur Holz. Wir brauchen Euch, um diese Kiste zu öffnen. Wer weiß, was darin ist. Könnt ihr helfen? ",
 	  shortDescription: "Hier ist eine einfache schwarze Kiste mit ??? - keine Schlüssel, keine Schlösser, einfach nix. Kannst du sie öffnen?",
 	  isPasswordProtected: false,
 	  password: "",
@@ -252,21 +252,21 @@ const games=[
     id: "5",
     title: "Spielshows (für jeden Anlass)",
     titleImage: "img/Spielshow/title.jpg",
-    description: "",
+      description: "Ein unvergessliches Abenteuer für Dich und deine Freunde. Dann hab ich genau das Richtige. Ich hab für jeden Anlass was dabei, egal ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern oder nur ein Teamabend. Ihr könnt entscheiden, zwischen Einzelspiele, Duelle oder Teamspiele. Lasst mich wissen was ihr vorhabt und ich finde das Richtige für Euch.<br><br>Hier mal einige Beispiele:<ul><li>Wurfspiele</li><li>Balancieren</li><li>Schätzen</li><li>Koordination</li><li>Genauigkeit</li><li>Quizfragen</li><li>Zielgenauigkeit</li></ul>",
     shortDescription: "Genau das richtige für jeden Anlass, ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern u.v.m",
     isPasswordProtected: false,
     password: "",
     puzzles: [],
-    builtOrBought: '',
-    availableSince: '',
+    builtOrBought: 'Sämtliche Spiele selbst ausgedacht ;-)',
+    availableSince: 'Ab sofort',
     difficulty: '',
-    duration: '',
+    duration: 'Zwischen 2 und 4 Stunden (kommt auf den Anlass an)',
     roomSize: '',
     playerSize: 'Bis zu 20 Personen (Jeder gegen Jeden, 1 gegen 1, 2 gegen 2, Teamspiele etc.)',
     playTime: 'Variabel, zwischen 2 und 4 Stunden',
-    playable: '',
-    specialFeatures: '',
-    ideaOrigin: '',
+    playable: 'Überall, ob drinnen oder draußen. Das liegt an Euch.',
+    specialFeatures: 'Es gibt viele Spielemöglichkeiten, mit viel Abwechselung',
+    ideaOrigin: 'Ich spiele sowas schon seit Jahren gegen meine Freunde. Ihr seid doch bestimmt auch ehrgeizig',
     additionalImages: [],
     priceLine1: '',
     priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'

@@ -92,7 +92,7 @@ function openGame(id) {
   navigate(`game/${id}`);
 
   document.getElementById('gameTitle').textContent = g.title;
-  document.getElementById('gameDescription').textContent = g.description;
+  document.getElementById('gameDescription').innerHTML = g.description;
   const gameTitleImage = document.getElementById('gameTitleImage');
   gameTitleImage.src = g.titleImage;
   gameTitleImage.onclick = () => openImage(g.titleImage);
