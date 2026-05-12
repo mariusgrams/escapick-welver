@@ -142,7 +142,7 @@ const games=[
       {
         image: "img/ratzellbox/ratzel_7.jpg",
         texts: [
-          "Hier wird ein Lied oder Reimgesucht.",
+          "Hier wird ein Lied bzw. Reim gesucht.",
           "4 Wörter sind hier abgebildet und diese Zahlen sollen benutzt werden.",
           "Messer (4), Gabel (8), Schere (9), Licht (6) ist für kleine Kinder nichts."
         ],
@@ -155,23 +155,23 @@ const games=[
           "Welche Objekte sind es? Das erste ist Knoblauch und die anderen? Ein bestimmtes Boot und anderes Wort für Möhre.",
           "Knoblauch, Segelboot und Karotte verstecken was in ihrem Wort."
         ],
-        solution: "Blau, Gelb, Rot sind die Farben der Flagge von Rumänien. Rümänien ist 507."
+        solution: "Kno(blau)ch, Se(gelb)oot, Ka(rot)te sind die Farben der Flagge von Rumänien. Bei Rumänien steht 507. Das ist der Code."
       },
       {
         image: "img/ratzellbox/ratzel_9.jpg",
         texts: [
-          "Hier geht es nur um die linke Seite. Findet ihr einen Kompass auf dieser Kiste?",
+          "Hier geht es nur ums linke Fach. Findet ihr einen Kompass auf dieser Kiste?",
           "Kann man wohl die Rückseite abnehmen? Der Kompass hat North, East, South und West. Schweden ist abgekürzt SWE.",
           "Schaut mal in die Richtung von SWE, also South, West, East. Welcher Morsecode ist das."
         ],
-        solution: "S = ..... (5), W = -..... (6), E = ....- (4) macht 564."
+        solution: "South = ..... (5), West = -.... (6), East = ....- (4), also 564 lautet der Code."
       },
       {
         image: "img/ratzellbox/ratzel_10.jpg",
         texts: [
-          "Hier geht es um die rechte Seite. Ausschlaggebend sind die Flaggen der Länder. ",
+          "Hier geht es nur ums rechte Fach. Ausschlaggebend sind die Flaggen der Länder.",
           "Dänemark hat die Flagge gedreht, da es sich um ein Pluszeichen handelt. Bei den anderen geht es um die Farben in der Flagge.",
-          "Es gibt auch für die einzelnen Farben, Zahlen an der Kiste. Armenien mit 3 Farben + Jemen mit 3 Farben."
+          "Es gibt auch für die einzelnen Farben, Zahlen an der Kiste. Armenien mit 3 Farben (3er Code) plus Jemen mit 3 Farben (3er Code)."
         ],
         solution: "Armenien (rot/blau/gelb = 412) plus (Dänemark) Jemen (rot/weiß/schwarz = 406) macht 818 als Lösung."
       },
@@ -180,7 +180,7 @@ const games=[
         texts: [
           "Trau Dich, Wer nicht hört, muss fühlen. Greif ruhig rein und fühle. Was fühlst du?",
           "Hier sind vier römische Zahlen zu fühlen. Das erste ist ein C ........",
-          "Es sind C X C V - schaue auf die Tafel, was das für eine 3stellige Zahl das ist"
+          "Es sind C X C V - schaue auf die Tafel, was ist das für eine 3stellige Zahl?"
         ],
         solution: "CXCV = C=100, XC=90, V=5, also 195"
       },
@@ -197,7 +197,7 @@ const games=[
         image: "img/ratzellbox/ratzel_13.jpg",
         texts: [
           "Als ihr die Kiste geöffnet habt, konnte man vorne links, ein weißes Rohr, herausziehen. Was kann man damit machen?",
-          "Auf der Rückseite sind vier Löcher zu erkennen. Könnte das war mit dem Rohr zutun haben?",
+          "Auf der Rückseite sind vier Löcher zu erkennen. Könnte das was mit dem Rohr zutun haben?",
           "Steckt das Rohr, in das erste Loch, von links und lest die Zahl (1) ab. Macht das mit den anderen Löchern genauso. "
         ],
         solution: "Erstes Loch (1), dann (8), nun (0) und zum Schluß (5). Also 1805 für das Schloß (Dubai). Jetzt wird gepuzzlet :-)"
