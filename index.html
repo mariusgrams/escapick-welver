@@ -3,175 +3,258 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ESCAPick-Welver</title>
+  <meta name="description" content="ESCAPick-Welver – Escape-Abenteuer, Rätselboxen und Spielshows für die ganze Familie in Welver." />
+  <title>ESCAPick-Welver – Escape-Abenteuer & Rätselboxen</title>
   <link rel="stylesheet" href="style.css" />
-
 </head>
 <body>
-  <header class="header">
-    <div class="brand">
-      <div class="logo" onclick="goHome()">EW</div>
-      <div>
-        <h1 class="multicolor-title">
-		  <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
-		</h1>
-        <p>Spiel - Spaß - Spannung für die ganze Familie</p>
-      </div>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="#home" onclick="event.preventDefault(); goHome();" aria-label="ESCAPick-Welver Startseite">
+        <div class="logo" aria-hidden="true">EW</div>
+        <div class="brand-text">
+          <span class="brand-name">
+            <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
+          </span>
+          <span class="brand-tagline">Spiel · Spaß · Spannung</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+        <button class="nav-btn active" data-route="home">Home</button>
+        <button class="nav-btn" data-route="contact">Kontakt</button>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <nav id="mainNav" class="nav">
-      <button class="nav-btn active" data-route="home">Home</button>
-      <button class="nav-btn" data-route="contact">Kontakt</button>
-    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="mobile-nav-btn" data-route="home">Home</button>
+      <button class="mobile-nav-btn" data-route="contact">Kontakt</button>
+    </div>
   </header>
 
+  <!-- ===== MAIN CONTENT ===== -->
   <main id="app">
-    <section id="home" class="page">
-      <div class="container">
-        <h1 class="multicolor-title">
-		      <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
-		    </h1>
-        <p>Ihr habt Interesse an Escape-Abenteuer, Rätselboxen, Spielshows? Dann seid Ihr bei mir genau richtig. </p>
-        <p>Auf dieser Seite habt ihr eine große Auswahl an Escape-Abenteuer, Rätselboxen oder auch Spielshows für jeden Anlass. Klickt Euch einfach mal durch. </p>
-		    <p><strong>Wie es funktioniert:</strong></p>
-        <ul>
-          <li>Schaut Euch alles an und falls es Fragen gibt, meldet Euch.</li>
-          <li>Klickt ihr auf die einzelnen Escape-Abenteuer, gibt es weitere Infos, wie z.b.</li>
-          <ul>
-            <li>einen Einblick in die Geschichte, ein Raumprofil und gegebenfalls Bilder (ohne zu spoilern).</li>
-          </ul>
-          <li>Entscheidet ihr Euch für eine Rätselbox, könnt ihr über einen passwortgeschützen Bereich, Hinweise und Lösungen einsehen.</li>
-          <ul>
-            <li>(ideal, wenn man zu Hause die Rätselbox lösen möchte)</li>
-          </ul>
-          <li>Spielshows für Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede oder Vereinsfeier</li>
-          <ul>
-            <li>(gerne Anfragen und wir werden das passende finden)</li>
-          </ul>
-          <li>weiteres in Planung</li>
-        </ul>
 
-        <h3>Auswahl der Spiele</h3>
-        <div id="gamesList" class="games-list"></div>
+    <!-- HOME PAGE -->
+    <section id="home" class="page" aria-label="Startseite">
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
+          </h1>
+          <p class="hero-subtitle">Escape-Abenteuer · Rätselboxen · Spielshows</p>
+          <p class="hero-desc">Spiel, Spaß und Spannung für die ganze Familie – handgemacht und einzigartig in Welver.</p>
+          <a href="#gamesList" class="btn btn-primary hero-cta" onclick="event.preventDefault(); document.getElementById('gamesList').scrollIntoView({behavior:'smooth'});">Spiele entdecken</a>
+        </div>
+        <div class="hero-badge" aria-hidden="true">🔐</div>
+      </div>
+
+      <!-- How it works -->
+      <div class="container section-gap">
+        <h2 class="section-title">Wie es funktioniert</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🗺️</div>
+            <h3>Erkunden</h3>
+            <p>Stöbert durch alle Escape-Abenteuer, Rätselboxen und Spielshows und findet das Passende für Euch.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📖</div>
+            <h3>Informieren</h3>
+            <p>Klickt auf ein Spiel und erhaltet das Raumprofil, die Geschichte und Bilder – ganz ohne Spoiler.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">💡</div>
+            <h3>Hinweise & Lösungen</h3>
+            <p>Bei Rätselboxen könnt ihr nach Passworteingabe Hinweise und Lösungen einsehen – ideal für zu Hause.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎉</div>
+            <h3>Spielshows buchen</h3>
+            <p>Für Betriebsfeiern, Kindergeburtstage oder Vereinsfeiern – einfach anfragen und wir finden das Richtige.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="container">
+        <div class="games-header">
+          <h2 class="section-title">Unsere Spiele</h2>
+          <div class="search-bar" role="search">
+            <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="gameSearch" placeholder="Spiele suchen…" aria-label="Spiele suchen" />
+          </div>
+        </div>
+        <div id="gamesList" class="games-grid" aria-live="polite"></div>
+        <p id="noResults" class="no-results hidden" aria-live="polite">Keine Spiele gefunden.</p>
       </div>
     </section>
 
-    <section id="gameDetail" class="page">
+    <!-- GAME DETAIL PAGE -->
+    <section id="gameDetail" class="page hidden" aria-label="Spieldetails">
       <div class="container">
-        <h2 id="gameTitle"></h2>
-        <div class="game-detail-layout">
-          <img id="gameTitleImage" class="game-thumb" onclick="openImage(this.src)" />
-          <p id="gameDescription" class="muted"></p>
-        </div>
-        <div id="gameAdditionalDetails">
-          <div id="gameAvailableSinceContainer">
-            <h3>Verfügbar seit</h3>
-            <p id="gameAvailableSince"></p>
-          </div>
-          <div id="gameBuiltOrBoughtContainer">
-            <h3>Selbst gebaut oder gekauft</h3>
-            <p id="gameBuiltOrBought"></p>
-          </div>
-          <div id="gameRoomSizeContainer">
-            <h3>Raumgröße</h3>
-            <p id="gameRoomSize"></p>
-          </div>
-          <div id="gameDifficultyContainer">
-            <h3>Schwierigkeitsgrad</h3>
-            <p id="gameDifficulty"></p>
-          </div>
-          <div id="gameDurationContainer">
-            <h3>Spieldauer</h3>
-            <p id="gameDuration"></p>
-          </div>
-          <div id="gamePlayableContainer">
-            <h3>Spielbar</h3>
-            <p id="gamePlayable"></p>
-          </div>
-          <div id="gamePlayerSizeContainer">
-            <h3>Spieleranzahl</h3>
-            <p id="gamePlayerSize"></p>
-          </div>
-          <div id="gameSpecialFeaturesContainer">
-            <h3>Besonderheiten</h3>
-            <p id="gameSpecialFeatures"></p>
-          </div>
-          <div id="gameIdeaOriginContainer">
-            <h3>Wie kam es zu dieser Idee</h3>
-            <p id="gameIdeaOrigin"></p>
+        <button id="btnBack" class="btn btn-ghost back-btn" onclick="navigate('home')" aria-label="Zurück zur Übersicht">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Zurück
+        </button>
+
+        <div class="game-detail-hero">
+          <img id="gameTitleImage" class="detail-cover" src="" alt="" onclick="openImage(this.src)" />
+          <div class="game-detail-intro">
+            <h1 id="gameTitle" class="detail-title"></h1>
+            <div id="gameDescription" class="detail-desc"></div>
           </div>
         </div>
-        <div id="passwordGate" class="hidden">
-          <p>Bitte Passwort eingeben, um die Hinweise zu sehen:</p>
-          <input id="pwInput" type="password" placeholder="Passwort" class="form-input" />
-          <button id="pwSubmit" class="btn">Bestätigen</button>
-          <p id="pwError" class="hidden" style="color:red;">Passwort falsch!</p>
-		    </div>
-      <div id="puzzleContainer" class="hidden"></div>
-      <div id="gameAdditionalImages" class="game-images">
-        <h3>Weitere Bilder</h3>
-        <div id="additionalImagesContainer"></div>
-      </div>
-      <button id="btnBack" class="btn hidden" onclick="navigate('home')">Zurück</button>
+
+        <!-- Room Profile -->
+        <div id="gameAdditionalDetails" class="room-profile">
+          <h2 class="section-title">Raumprofil</h2>
+          <dl class="profile-grid">
+            <div id="gameAvailableSinceContainer" class="profile-item">
+              <dt>Verfügbar seit</dt>
+              <dd id="gameAvailableSince"></dd>
+            </div>
+            <div id="gameBuiltOrBoughtContainer" class="profile-item">
+              <dt>Selbst gebaut / gekauft</dt>
+              <dd id="gameBuiltOrBought"></dd>
+            </div>
+            <div id="gameRoomSizeContainer" class="profile-item">
+              <dt>Raumgröße</dt>
+              <dd id="gameRoomSize"></dd>
+            </div>
+            <div id="gameDifficultyContainer" class="profile-item">
+              <dt>Schwierigkeitsgrad</dt>
+              <dd id="gameDifficulty"></dd>
+            </div>
+            <div id="gameDurationContainer" class="profile-item">
+              <dt>Spieldauer</dt>
+              <dd id="gameDuration"></dd>
+            </div>
+            <div id="gamePlayableContainer" class="profile-item">
+              <dt>Spielbar</dt>
+              <dd id="gamePlayable"></dd>
+            </div>
+            <div id="gamePlayerSizeContainer" class="profile-item">
+              <dt>Spieleranzahl</dt>
+              <dd id="gamePlayerSize"></dd>
+            </div>
+            <div id="gameSpecialFeaturesContainer" class="profile-item">
+              <dt>Besonderheiten</dt>
+              <dd id="gameSpecialFeatures"></dd>
+            </div>
+            <div id="gameIdeaOriginContainer" class="profile-item profile-item--wide">
+              <dt>Wie kam es zu dieser Idee?</dt>
+              <dd id="gameIdeaOrigin"></dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Password Gate -->
+        <div id="passwordGate" class="password-gate hidden">
+          <div class="password-gate-inner">
+            <div class="password-icon" aria-hidden="true">🔒</div>
+            <h2>Passwortgeschützter Bereich</h2>
+            <p>Gebt das Passwort ein, um Hinweise und Lösungen einzusehen.</p>
+            <div class="pw-form">
+              <input id="pwInput" type="password" placeholder="Passwort eingeben…" class="pw-input" autocomplete="current-password" aria-label="Passwort" />
+              <button id="pwSubmit" class="btn btn-primary">Entsperren</button>
+            </div>
+            <p id="pwError" class="pw-error hidden" role="alert">Falsches Passwort. Bitte erneut versuchen.</p>
+          </div>
+        </div>
+
+        <!-- Puzzle / Hints Container -->
+        <div id="puzzleContainer" class="hidden"></div>
+
+        <!-- Additional Images -->
+        <div id="gameAdditionalImages" class="additional-images-section">
+          <h2 class="section-title">Weitere Bilder</h2>
+          <div id="additionalImagesContainer" class="images-grid"></div>
+        </div>
+
       </div>
     </section>
 
-	<section id="contact" class="page hidden">
-	  <div class="container">
-		<h2>Kontakt</h2>
-        <p>
-          Du hast Fragen, Wünsche oder möchtest ein Angebot anfordern? Wir freuen uns auf Deine Nachricht!
-        </p>
-        <ul>
-          <li>
-            <strong>E-Mail:</strong>
-            <a href="mailto:ESCAPick-Welver@web.de">ESCAPick-Welver@web.de</a>
-          </li>
-          <li>
-            <strong>Instagram:</strong>
-            <a href="https://instagram.com/escapickwelver" target="_blank" rel="noopener">@escapickwelver</a>
-          </li>
-        </ul>
-        <p>
-          Wir bemühen uns, Deine Anfrage schnellstmöglich zu beantworten.
-        </p>
-	  </div>
-	</section>
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page hidden" aria-label="Kontakt">
+      <div class="container section-gap">
+        <h1 class="section-title">Kontakt</h1>
+        <p class="lead">Du hast Fragen, Wünsche oder möchtest ein Angebot anfordern? Ich freue mich auf Deine Nachricht!</p>
+        <div class="contact-cards">
+          <a href="mailto:ESCAPick-Welver@web.de" class="contact-card">
+            <div class="contact-card-icon" aria-hidden="true">✉️</div>
+            <div>
+              <strong>E-Mail</strong>
+              <span>ESCAPick-Welver@web.de</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/escapickwelver" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <div class="contact-card-icon" aria-hidden="true">📸</div>
+            <div>
+              <strong>Instagram</strong>
+              <span>@escapickwelver</span>
+            </div>
+          </a>
+        </div>
+        <p class="muted" style="margin-top:2rem;">Ich bemühe mich, Deine Anfrage schnellstmöglich zu beantworten.</p>
+      </div>
+    </section>
+
+    <!-- IMPRESSUM -->
+    <section id="impressum" class="page hidden" aria-label="Impressum">
+      <div class="container section-gap small-text">
+        <h1 class="section-title">Impressum</h1>
+        <p>ESCAPick-Welver<br>Holger Kürpick<br>Eichenstrasse 11<br>59514 Welver</p>
+        <p>Kontakt: <a href="mailto:ESCAPick-Welver@web.de">ESCAPick-Welver@web.de</a></p>
+      </div>
+    </section>
+
+    <!-- DATENSCHUTZ -->
+    <section id="datenschutz" class="page hidden" aria-label="Datenschutz">
+      <div class="container section-gap small-text">
+        <h1 class="section-title">Datenschutzerklärung</h1>
+        <p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Beim Besuch dieser Website werden keine personenbezogenen Daten erhoben, gespeichert oder verarbeitet. Es werden keine Cookies gesetzt und keine Analyse- oder Tracking-Tools eingesetzt. Eine Weitergabe von Daten an Dritte findet nicht statt.</p>
+        <p>Sollten Sie uns per E-Mail kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht dauerhaft gespeichert. Nach Abschluss der Bearbeitung werden Ihre Daten umgehend gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+        <p>Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten, deren Herkunft und Empfänger sowie den Zweck der Speicherung. Ebenso haben Sie das Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Bei Fragen zum Datenschutz wenden Sie sich bitte an: <a href="mailto:ESCAPick-Welver@web.de">ESCAPick-Welver@web.de</a></p>
+      </div>
+    </section>
+
   </main>
 
-  <section id="impressum" class="page hidden container small-text">
-    <h2>Impressum</h2>
-    <p>ESCAPick-Welver<br>Holger Kürpick<br>Eichenstrasse 11<br>59514 Welver</p>
-    <p>Kontakt: ESCAPick-Welver@web.de</p>
-  </section>
-
-  <section id="datenschutz" class="page hidden container small-text">
-    <h2>Datenschutz</h2>
-    <p>
-      Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Beim Besuch dieser Website werden keine personenbezogenen Daten erhoben, gespeichert oder verarbeitet. Es werden keine Cookies gesetzt und keine Analyse- oder Tracking-Tools eingesetzt. Eine Weitergabe von Daten an Dritte findet nicht statt.
-    </p>
-    <p>
-      Sollten Sie uns per E-Mail oder Kontaktformular kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht dauerhaft gespeichert. Nach Abschluss der Bearbeitung werden Ihre Daten umgehend gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
-    </p>
-    <p>
-      Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten, deren Herkunft und Empfänger sowie den Zweck der Speicherung. Ebenso haben Sie das Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Bei Fragen zum Datenschutz wenden Sie sich bitte an: ESCAPick-Welver@web.de
-    </p>
-  </section>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> ESCAPick-Welver — Alle Rechte vorbehalten</p>
-    <p>
-      <a href="#impressum" onclick="event.preventDefault(); history.pushState({ page: 'impressum' }, '', '#impressum'); navigate('impressum');">Impressum</a> •
-      <a href="#datenschutz" onclick="event.preventDefault(); history.pushState({ page: 'datenschutz' }, '', '#datenschutz'); navigate('datenschutz');">Datenschutz</a>
-    </p>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="c-red">E</span><span class="c-blue">S</span><span class="c-yellow">C</span><span class="c-green">A</span><span class="c-lightblue">P</span>ick-Welver
+      </div>
+      <p class="footer-tagline">Handgemachte Escape-Abenteuer aus Welver</p>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="#impressum" onclick="event.preventDefault(); navigate('impressum');">Impressum</a>
+        <span aria-hidden="true">·</span>
+        <a href="#datenschutz" onclick="event.preventDefault(); navigate('datenschutz');">Datenschutz</a>
+        <span aria-hidden="true">·</span>
+        <a href="#contact" onclick="event.preventDefault(); navigate('contact');">Kontakt</a>
+      </nav>
+      <p class="footer-copy">© <span id="year"></span> ESCAPick-Welver — Alle Rechte vorbehalten</p>
+    </div>
   </footer>
-  
-  <div id="imgModal" onclick="closeImage()">
-	<img id="modalImage" src="" />
+
+  <!-- Image Lightbox Modal -->
+  <div id="imgModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Bildvorschau" onclick="if(event.target===this)closeImage();">
+    <button class="modal-close" onclick="closeImage();" aria-label="Schließen">✕</button>
+    <img id="modalImage" src="" alt="Vollbild" />
   </div>
 
   <script src="content.js"></script>
-  <script src="prices.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

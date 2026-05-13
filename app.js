@@ -1,162 +1,310 @@
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function navigate(id, options = {}) {
-  // Zeige die gewünschte Seite an
-  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  if (id.startsWith('game/')) {
-    document.getElementById('gameDetail').classList.remove('hidden');
-    document.getElementById('btnBack').classList.remove('hidden');
-  } else {
-    document.getElementById(id).classList.remove('hidden');
-    // Zeige den Zurück-Button nur auf der Detailseite
-    const backButton = document.getElementById('btnBack');
-    if (id === 'gameDetail') {
-      backButton.classList.remove('hidden');
-    } else {
-      backButton.classList.add('hidden');
-    }
-  }
-
-  // Update navigation highlight
-  const navButtons = document.querySelectorAll('.nav-btn');
-  navButtons.forEach(btn => {
-    if (btn.dataset.route === id || (id.startsWith('game/') && btn.dataset.route === 'home')) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-
-  // Render prices when navigating to prices page
-  if (id === 'prices') {
-    renderPrices();
-  }
-
-  // Nur pushState, wenn nicht durch popstate ausgelöst
-  if (!options.fromPopState) {
-    if (id.startsWith('game/')) {
-      history.pushState({ page: id }, '', `#${id}`);
-    } else {
-      history.pushState({ page: id }, '', `#${id}`);
-    }
-  }
-}
-
-// Navigation Highlight
-const navButtons = document.querySelectorAll('.nav-btn');
-navButtons.forEach(btn => btn.addEventListener('click', () => {
-  navButtons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const route = btn.dataset.route;
-  history.pushState({ page: route }, '', `#${route}`);
-  navigate(route);
-}));
-
-// Render Game List (Home & Grid)
-function renderGames() {
-  const list = document.getElementById('gamesList');
-  list.innerHTML = ''; // Clear the list
-
-  games.forEach(g => {
-    const card = `
-      <div class='game-card' onclick="openGame('${g.id}')">
-        <img src='${g.titleImage}' class='game-thumb'/>
-        <div>
-          <h3>${g.title}</h3>
-          <p class='muted'>${g.shortDescription}</p>
-          <div class='game-info'>
-            <span><strong>Spieldauer:</strong> ${g.playTime}</span><br>
-            <span><strong>Spieleranzahl:</strong> ${g.playerSize}</span><br>
-            <span><strong>Preis:</strong> ${g.priceLine1}${g.priceLine1 && g.priceLine2 ? ' / ' + g.priceLine2 : (g.priceLine2 ? g.priceLine2 : '')}</span>
-          </div>
-        </div>
-      </div>`;
-    list.innerHTML += card;
-  });
-}
+﻿document.getElementById("year").textContent = new Date().getFullYear();
 
 let currentGame = null;
+let currentSearch = "";
+let lastOpenedImageSrc = "";
 
 function setTitleImageSize(width, maxWidth, maxHeight) {
-  const titleImage = document.getElementById('gameTitleImage');
-  titleImage.style.setProperty('--title-image-width', width);
-  titleImage.style.setProperty('--title-image-max-width', maxWidth);
-  titleImage.style.setProperty('--title-image-max-height', maxHeight);
+  const titleImage = document.getElementById("gameTitleImage");
+  if (!titleImage) return;
+  titleImage.style.setProperty("--title-image-width", width);
+  titleImage.style.setProperty("--title-image-max-width", maxWidth);
+  titleImage.style.setProperty("--title-image-max-height", maxHeight);
 }
 
-function openGame(id) {
-  const g = games.find(x => x.id === id);
-  currentGame = g;
+function escapeAttr(value) {
+  return String(value).replace(/"/g, "&quot;");
+}
 
-  // Setze die URL und History korrekt auf #game/{id}
-  navigate(`game/${id}`);
+function closeMobileMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const toggle = document.getElementById("navToggle");
+  if (!menu || !toggle) return;
+  menu.classList.remove("open");
+  menu.setAttribute("aria-hidden", "true");
+  toggle.setAttribute("aria-expanded", "false");
+}
 
-  document.getElementById('gameTitle').textContent = g.title;
-  document.getElementById('gameDescription').innerHTML = g.description;
-  const gameTitleImage = document.getElementById('gameTitleImage');
-  gameTitleImage.src = g.titleImage;
-  gameTitleImage.onclick = () => openImage(g.titleImage);
-
-  function populateOrHide(containerId, contentId, value) {
-    const container = document.getElementById(containerId);
-    const content = document.getElementById(contentId);
-    if (value) {
-      container.style.display = 'block';
-      content.innerHTML = value;
+function syncNavigation(route) {
+  const normalizedRoute = route.startsWith("game/") ? "home" : route;
+  const allButtons = document.querySelectorAll(".nav-btn, .mobile-nav-btn");
+  allButtons.forEach((btn) => {
+    if (btn.dataset.route === normalizedRoute) {
+      btn.classList.add("active");
     } else {
-      container.style.display = 'none';
+      btn.classList.remove("active");
+    }
+  });
+}
+
+function navigate(id, options = {}) {
+  const pages = document.querySelectorAll(".page");
+  pages.forEach((p) => p.classList.add("hidden"));
+
+  const targetId = id.startsWith("game/") ? "gameDetail" : id;
+  const targetPage = document.getElementById(targetId) || document.getElementById("home");
+  targetPage.classList.remove("hidden");
+
+  const backButton = document.getElementById("btnBack");
+  if (targetId === "gameDetail") {
+    backButton.classList.remove("hidden");
+  } else {
+    backButton.classList.add("hidden");
+  }
+
+  syncNavigation(id);
+  closeMobileMenu();
+
+  if (!options.fromPopState) {
+    history.pushState({ page: id }, "", `#${id}`);
+  }
+
+  if (!options.keepScrollPosition) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function renderGames(searchTerm = "") {
+  const list = document.getElementById("gamesList");
+  const noResults = document.getElementById("noResults");
+  if (!list) return;
+
+  const normalized = searchTerm.trim().toLowerCase();
+  const filteredGames = games.filter((g) => {
+    if (!normalized) return true;
+    const haystack = `${g.title} ${g.shortDescription || ""} ${g.description || ""}`.toLowerCase();
+    return haystack.includes(normalized);
+  });
+
+  list.innerHTML = "";
+
+  filteredGames.forEach((g, index) => {
+    const card = document.createElement("article");
+    card.className = "game-card reveal";
+    card.style.transitionDelay = `${Math.min(index * 40, 240)}ms`;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", `${g.title} ansehen`);
+    card.setAttribute("onclick", `openGame(\"${escapeAttr(g.id)}\")`);
+
+    card.innerHTML = `
+      <img src="${g.titleImage}" alt="${g.title}" class="game-thumb" loading="lazy" />
+      <div class="game-card-content">
+        <h3>${g.title}</h3>
+        <p class="muted">${g.shortDescription || ""}</p>
+        <div class="game-meta">
+          <span><strong>Spieldauer:</strong> ${g.playTime || "Auf Anfrage"}</span>
+          <span><strong>Spieler:</strong> ${g.playerSize || "Auf Anfrage"}</span>
+          <span><strong>Preis:</strong> ${g.priceLine1 || ""}${g.priceLine1 && g.priceLine2 ? " / " : ""}${g.priceLine2 || "Auf Anfrage"}</span>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openGame(g.id);
+      }
+    });
+
+    list.appendChild(card);
+  });
+
+  if (noResults) {
+    if (filteredGames.length === 0) {
+      noResults.classList.remove("hidden");
+    } else {
+      noResults.classList.add("hidden");
     }
   }
 
-  // Populate additional details
-  populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
-  populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
-  populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
-  populateOrHide('gameDifficultyContainer', 'gameDifficulty', g.difficulty);
-  populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
-  populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
-  populateOrHide('gamePlayerSizeContainer', 'gamePlayerSize', g.playerSize);
-  populateOrHide('gameSpecialFeaturesContainer', 'gameSpecialFeatures', g.specialFeatures);
-  populateOrHide('gameIdeaOriginContainer', 'gameIdeaOrigin', g.ideaOrigin);
+  applyRevealAnimation();
+}
 
-  // Render additional images
-  const additionalImagesContainer = document.getElementById('additionalImagesContainer');
-  const additionalImagesSection = document.getElementById('gameAdditionalImages');
-  if (g.additionalImages && g.additionalImages.length > 0) {
-    additionalImagesContainer.innerHTML = '';
-    g.additionalImages.forEach(image => {
-      const imgElement = document.createElement('img');
-      imgElement.src = image;
-      imgElement.alt = 'Zusätzliches Bild';
-      imgElement.classList.add('game-thumb');
-      imgElement.onclick = () => openImage(image); // Add click event for full-screen view
-      additionalImagesContainer.appendChild(imgElement);
-    });
-    additionalImagesSection.style.display = 'block';
+function populateOrHide(containerId, contentId, value) {
+  const container = document.getElementById(containerId);
+  const content = document.getElementById(contentId);
+  if (!container || !content) return;
+
+  if (value && String(value).trim() !== "") {
+    container.style.display = "block";
+    content.innerHTML = value;
   } else {
-    additionalImagesSection.style.display = 'none';
-  }
-
-  // Setze die Größe des titleImage (z. B. 80% Breite, max. 400px Breite, max. 300px Höhe)
-  setTitleImageSize('80%', '400px', '300px');
-
-  document.getElementById('passwordGate').classList.add("hidden");
-  document.getElementById('puzzleContainer').classList.add("hidden");
-  document.getElementById('pwError').classList.add("hidden");
-
-  if (g.isPasswordProtected) {
-    document.getElementById('passwordGate').classList.remove("hidden");
-    document.getElementById('pwInput').value = "";
-    document.getElementById('puzzleContainer').classList.add("hidden");
-  } else {
-    document.getElementById('passwordGate').classList.add("hidden");
-    document.getElementById('puzzleContainer').classList.remove("hidden");
-    renderPuzzles(g);
+    container.style.display = "none";
   }
 }
 
-// Passwortprüfung
-document.getElementById("pwSubmit").addEventListener("click", () => {
+function openGame(id, options = {}) {
+  const g = games.find((game) => game.id === id);
+  if (!g) {
+    navigate("home");
+    return;
+  }
+
+  currentGame = g;
+
+  if (!options.skipNavigation) {
+    navigate(`game/${id}`);
+  }
+
+  document.getElementById("gameTitle").textContent = g.title;
+  document.getElementById("gameDescription").innerHTML = g.description || "";
+
+  const gameTitleImage = document.getElementById("gameTitleImage");
+  gameTitleImage.src = g.titleImage;
+  gameTitleImage.alt = `${g.title} Titelbild`;
+  gameTitleImage.onclick = () => openImage(g.titleImage);
+
+  populateOrHide("gameAvailableSinceContainer", "gameAvailableSince", g.availableSince);
+  populateOrHide("gameBuiltOrBoughtContainer", "gameBuiltOrBought", g.builtOrBought);
+  populateOrHide("gameRoomSizeContainer", "gameRoomSize", g.roomSize);
+  populateOrHide("gameDifficultyContainer", "gameDifficulty", g.difficulty);
+  populateOrHide("gameDurationContainer", "gameDuration", g.duration);
+  populateOrHide("gamePlayableContainer", "gamePlayable", g.playable);
+  populateOrHide("gamePlayerSizeContainer", "gamePlayerSize", g.playerSize);
+  populateOrHide("gameSpecialFeaturesContainer", "gameSpecialFeatures", g.specialFeatures);
+  populateOrHide("gameIdeaOriginContainer", "gameIdeaOrigin", g.ideaOrigin);
+
+  const additionalImagesContainer = document.getElementById("additionalImagesContainer");
+  const additionalImagesSection = document.getElementById("gameAdditionalImages");
+
+  if (g.additionalImages && g.additionalImages.length > 0) {
+    additionalImagesContainer.innerHTML = "";
+    g.additionalImages.forEach((image) => {
+      const imgElement = document.createElement("img");
+      imgElement.src = image;
+      imgElement.alt = `${g.title} Zusatzbild`;
+      imgElement.loading = "lazy";
+      imgElement.onclick = () => openImage(image);
+      additionalImagesContainer.appendChild(imgElement);
+    });
+    additionalImagesSection.style.display = "block";
+  } else {
+    additionalImagesSection.style.display = "none";
+  }
+
+  setTitleImageSize("100%", "560px", "380px");
+
+  const passwordGate = document.getElementById("passwordGate");
+  const puzzleContainer = document.getElementById("puzzleContainer");
+  const pwError = document.getElementById("pwError");
+
+  pwError.classList.add("hidden");
+
+  if (g.isPasswordProtected) {
+    passwordGate.classList.remove("hidden");
+    document.getElementById("pwInput").value = "";
+    puzzleContainer.classList.add("hidden");
+  } else {
+    passwordGate.classList.add("hidden");
+    puzzleContainer.classList.remove("hidden");
+    renderPuzzles(g);
+  }
+
+  applyRevealAnimation();
+}
+
+function openImage(src) {
+  if (!src) return;
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImage");
+  modalImg.src = src;
+  modal.style.display = "flex";
+  lastOpenedImageSrc = src;
+
+  if (location.hash !== "#img") {
+    history.pushState({ modal: "img" }, "", "#img");
+  }
+}
+
+function closeImage(skipHistoryBack = false) {
+  const modal = document.getElementById("imgModal");
+  modal.style.display = "none";
+
+  if (!skipHistoryBack && location.hash === "#img") {
+    history.back();
+  }
+}
+
+function goHome() {
+  const searchInput = document.getElementById("gameSearch");
+  if (searchInput) {
+    searchInput.value = "";
+  }
+  currentSearch = "";
+  renderGames(currentSearch);
+  navigate("home");
+}
+
+function renderPuzzles(game) {
+  const container = document.getElementById("puzzleContainer");
+  container.innerHTML = "";
+
+  if (!game.puzzles || game.puzzles.length === 0) {
+    return;
+  }
+
+  game.puzzles.forEach((puzzle, pIdx) => {
+    const puzzleDetails = document.createElement("details");
+    puzzleDetails.className = "puzzle-block reveal";
+
+    const puzzleSummary = document.createElement("summary");
+    puzzleSummary.innerHTML = `Ratsel ${pIdx + 1}`;
+    puzzleDetails.appendChild(puzzleSummary);
+
+    if (puzzle.image) {
+      const img = document.createElement("img");
+      img.src = puzzle.image;
+      img.alt = `Ratsel ${pIdx + 1}`;
+      img.loading = "lazy";
+      img.onclick = () => openImage(puzzle.image);
+      puzzleDetails.appendChild(img);
+    }
+
+    if (Array.isArray(puzzle.texts) && puzzle.texts.length > 0) {
+      const hintsList = document.createElement("div");
+      hintsList.className = "hints-list";
+
+      puzzle.texts.forEach((hint, hIdx) => {
+        const hintDetails = document.createElement("details");
+        hintDetails.className = "hint-block";
+
+        const hintSummary = document.createElement("summary");
+        hintSummary.textContent = `Hinweis ${hIdx + 1}`;
+        hintDetails.appendChild(hintSummary);
+
+        const hintText = document.createElement("div");
+        hintText.textContent = hint;
+        hintDetails.appendChild(hintText);
+
+        hintsList.appendChild(hintDetails);
+      });
+
+      puzzleDetails.appendChild(hintsList);
+    }
+
+    if (puzzle.solution) {
+      const solutionDetails = document.createElement("details");
+      solutionDetails.className = "solution-block";
+
+      const solutionSummary = document.createElement("summary");
+      solutionSummary.textContent = "Lösung anzeigen";
+      solutionDetails.appendChild(solutionSummary);
+
+      const solutionText = document.createElement("div");
+      solutionText.textContent = puzzle.solution;
+      solutionDetails.appendChild(solutionText);
+
+      puzzleDetails.appendChild(solutionDetails);
+    }
+
+    container.appendChild(puzzleDetails);
+  });
+
+  applyRevealAnimation();
+}
+
+function handlePasswordSubmit() {
   if (!currentGame) return;
 
   if (!currentGame.isPasswordProtected) {
@@ -167,367 +315,137 @@ document.getElementById("pwSubmit").addEventListener("click", () => {
   }
 
   const input = document.getElementById("pwInput").value;
+  const pwError = document.getElementById("pwError");
 
   if (input === currentGame.password) {
+    pwError.classList.add("hidden");
     document.getElementById("passwordGate").classList.add("hidden");
     document.getElementById("puzzleContainer").classList.remove("hidden");
     renderPuzzles(currentGame);
   } else {
-    document.getElementById("pwError").classList.remove("hidden");
-  }
-});
-
-// Allow Enter key to submit password
-document.getElementById("pwInput").addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    document.getElementById("pwSubmit").click();
-  }
-});
-
-function openImage(src) {
-  const modal = document.getElementById("imgModal");
-  const modalImg = document.getElementById("modalImage");
-
-  modalImg.src = src;
-  modal.style.display = "flex";
-  // Füge einen neuen History-Eintrag für das Bild hinzu
-  history.pushState({ modal: 'img' }, '', '#img');
-}
-
-// Passe das Schließen an: Modal schließt nur, wenn außerhalb des Bildes geklickt wird
-document.getElementById("imgModal").onclick = function (e) {
-  // Nur schließen, wenn auf den Hintergrund (nicht das Bild) geklickt wird
-  if (e.target === this) {
-    closeImage();
-  }
-};
-
-function closeImage() {
-  document.getElementById("imgModal").style.display = "none";
-  // Wenn das aktuelle Hash #img ist, gehe einen Schritt zurück in der History
-  if (location.hash === '#img') {
-    history.back();
+    pwError.classList.remove("hidden");
   }
 }
 
-function goHome() {
-  history.pushState({ page: 'home' }, '', '#home');
-  navigate('home');
-  renderGames(); // Spieleliste erneut rendern
-
-  // Disable full-screen viewing for the title image on the home page
-  const gameTitleImage = document.getElementById('gameTitleImage');
-  gameTitleImage.onclick = null;
-
-  // Hide additional details and images on the home page
-  const detailContainers = [
-    'gameBuiltOrBoughtContainer',
-    'gameAvailableSinceContainer',
-    'gameDifficultyContainer',
-    'gameDurationContainer',
-    'gameRoomSizeContainer',
-    'gamePlayableContainer',
-    'gameSpecialFeaturesContainer',
-    'gameIdeaOriginContainer',
-    'gameAdditionalImages'
-  ];
-  detailContainers.forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-
-  // Navigation Highlight für die Home-Taste setzen
-  const navButtons = document.querySelectorAll('.nav-btn');
-  navButtons.forEach(btn => btn.classList.remove('active'));
-  document.querySelector('.nav-btn[data-route="home"]').classList.add('active');
-}
-
-// Initiales Laden: Seite aus Hash oder Standardseite anzeigen
-window.addEventListener('DOMContentLoaded', () => {
-  handleHashNavigation();
-});
-
-// Browser-Navigation (Zurück/Vor) behandeln
-window.addEventListener('popstate', (event) => {
-  handleHashNavigation(true);
-});
-
-// Hash-Änderungen behandeln (z.B. direkte Eingabe in die Adresszeile)
-window.addEventListener('hashchange', () => {
-  handleHashNavigation(true);
-});
-
-// Passe handleHashNavigation an, um das Bildmodal zu schließen, wenn #img verlassen wird
 function handleHashNavigation(fromPopState = false) {
-  let hash = location.hash.replace('#', '');
-  // Bildmodal öffnen
-  if (hash === 'img') {
-    // Modal bleibt offen, nichts tun (openImage setzt das Modal)
-    // Falls Seite neu geladen wird mit #img, Modal schließen
-    if (document.getElementById("imgModal").style.display !== "flex") {
-      closeImage();
+  const hash = location.hash.replace("#", "") || "home";
+
+  if (hash === "img") {
+    if (lastOpenedImageSrc) {
+      const modal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImage");
+      modalImg.src = lastOpenedImageSrc;
+      modal.style.display = "flex";
     }
     return;
-  } else {
-    // Wenn Modal offen ist, schließe es
-    if (document.getElementById("imgModal").style.display === "flex") {
-      document.getElementById("imgModal").style.display = "none";
-      // Nicht weiter navigieren, damit der Benutzer auf der aktuellen Seite bleibt
+  }
+
+  if (document.getElementById("imgModal").style.display === "flex") {
+    closeImage(true);
+    return;
+  }
+
+  if (hash.startsWith("game/")) {
+    const gameId = hash.split("/")[1];
+    if (gameId) {
+      navigate(`game/${gameId}`, { fromPopState: true, keepScrollPosition: true });
+      openGame(gameId, { skipNavigation: true });
       return;
     }
   }
 
-  if (hash.startsWith('game/')) {
-    // Spiel-Detailseite
-    const gameId = hash.split('/')[1];
-    if (gameId) {
-      openGame(gameId);
-      // Verhindere doppeltes pushState
-      // navigate setzt von sich aus pushState, daher hier mit Option
-      navigate(`game/${gameId}`, { fromPopState: true });
-    }
-  } else if (hash) {
-    navigate(hash, { fromPopState: true });
-    if (hash === 'home') renderGames();
-  } else {
-    navigate('home', { fromPopState: true });
-    renderGames();
+  navigate(hash, { fromPopState: fromPopState || true, keepScrollPosition: true });
+
+  if (hash === "home") {
+    renderGames(currentSearch);
   }
 }
 
-// Helper function to open game without adding to history
-function openGameWithoutHistory(id) {
-  const g = games.find(x => x.id === id);
-  currentGame = g;
+function applyRevealAnimation() {
+  const revealElements = document.querySelectorAll(".reveal:not(.in-view)");
+  if (revealElements.length === 0) return;
 
-  document.getElementById('gameTitle').textContent = g.title;
-  document.getElementById('gameDescription').textContent = g.description;
-  const gameTitleImage = document.getElementById('gameTitleImage');
-  gameTitleImage.src = g.titleImage;
-  gameTitleImage.onclick = () => openImage(g.titleImage);
-
-  function populateOrHide(containerId, contentId, value) {
-    const container = document.getElementById(containerId);
-    const content = document.getElementById(contentId);
-    if (value) {
-      container.style.display = 'block';
-      content.textContent = value;
-    } else {
-      container.style.display = 'none';
-    }
-  }
-
-  populateOrHide('gameBuiltOrBoughtContainer', 'gameBuiltOrBought', g.builtOrBought);
-  populateOrHide('gameAvailableSinceContainer', 'gameAvailableSince', g.availableSince);
-  populateOrHide('gameDifficultyContainer', 'gameDifficulty', g.difficulty);
-  populateOrHide('gameDurationContainer', 'gameDuration', g.duration);
-  populateOrHide('gameRoomSizeContainer', 'gameRoomSize', g.roomSize);
-  populateOrHide('gamePlayableContainer', 'gamePlayable', g.playable);
-  populateOrHide('gameSpecialFeaturesContainer', 'gameSpecialFeatures', g.specialFeatures);
-  populateOrHide('gameIdeaOriginContainer', 'gameIdeaOrigin', g.ideaOrigin);
-
-  const additionalImagesContainer = document.getElementById('additionalImagesContainer');
-  const additionalImagesSection = document.getElementById('gameAdditionalImages');
-  if (g.additionalImages && g.additionalImages.length > 0) {
-    additionalImagesContainer.innerHTML = '';
-    g.additionalImages.forEach(image => {
-      const imgElement = document.createElement('img');
-      imgElement.src = image;
-      imgElement.alt = 'Zusätzliches Bild';
-      imgElement.classList.add('game-thumb');
-      imgElement.onclick = () => openImage(image);
-      additionalImagesContainer.appendChild(imgElement);
-    });
-    additionalImagesSection.style.display = 'block';
-  } else {
-    additionalImagesSection.style.display = 'none';
-  }
-
-  setTitleImageSize('80%', '400px', '300px');
-
-  document.getElementById('passwordGate').classList.add("hidden");
-  document.getElementById('puzzleContainer').classList.add("hidden");
-  document.getElementById('pwError').classList.add("hidden");
-
-  if (g.isPasswordProtected) {
-    document.getElementById('passwordGate').classList.remove("hidden");
-    document.getElementById('pwInput').value = "";
-    document.getElementById('puzzleContainer').classList.add("hidden");
-  } else {
-    document.getElementById('passwordGate').classList.add("hidden");
-    document.getElementById('puzzleContainer').classList.remove("hidden");
-    renderPuzzles(g);
-  }
-
-  navigate('gameDetail');
-}
-
-// Initialize with home page in history
-history.replaceState({ page: 'home' }, '', '#home');
-
-// Ensure additional details and images are hidden on page load
-goHome();
-
-renderGames();
-
-// Render Prices List
-function renderPrices() {
-  const pricesList = document.getElementById('pricesList');
-  pricesList.innerHTML = ''; // Clear the list
-
-  prices.forEach(p => {
-    const priceCard = document.createElement('div');
-    priceCard.classList.add('price-card');
-    
-    const title = document.createElement('h3');
-    title.textContent = p.title;
-    
-    const description = document.createElement('p');
-    // Replace </br> with actual line breaks
-    description.innerHTML = p.description.replace(/<\/br>/gi, '<br>');
-    
-    priceCard.appendChild(title);
-    priceCard.appendChild(description);
-    pricesList.appendChild(priceCard);
-  });
-}
-
-// --- Puzzles rendern ---
-function renderPuzzles(game) {
-  const container = document.getElementById('puzzleContainer');
-  container.innerHTML = '';
-
-  if (!game.puzzles || game.puzzles.length === 0) {
-    return;
-  }
-
-  game.puzzles.forEach((puzzle, pIdx) => {
-    const puzzleDetails = document.createElement('details');
-    puzzleDetails.className = 'puzzle-block';
-    puzzleDetails.style.margin = '1.0rem 0';
-    puzzleDetails.style.border = '1px solid #222';
-    puzzleDetails.style.borderRadius = '10px';
-    puzzleDetails.style.background = '#141820';
-    puzzleDetails.style.boxShadow = '0 2px 8px #0003';
-
-    const puzzleSummary = document.createElement('summary');
-    puzzleSummary.innerHTML = `<span style="font-size:1.2em;font-weight:bold;color:#e6eef6;">❓ Rätsel ${pIdx + 1}</span>`;
-    puzzleSummary.style.padding = '1rem';
-    puzzleSummary.style.cursor = 'pointer';
-    puzzleDetails.appendChild(puzzleSummary);
-
-    if (puzzle.image) {
-      const img = document.createElement('img');
-      img.src = puzzle.image;
-      img.alt = `Puzzle ${pIdx + 1}`;
-      img.style.maxWidth = '250px';
-      img.style.display = 'block';
-      img.style.margin = '1rem auto 1rem auto';
-      img.style.borderRadius = '8px';
-      img.style.boxShadow = '0 2px 8px #0003';
-      img.onclick = () => openImage(puzzle.image);
-      puzzleDetails.appendChild(img);
-    }
-
-    if (Array.isArray(puzzle.texts) && puzzle.texts.length > 0) {
-      const hintsList = document.createElement('div');
-      hintsList.className = 'hints-list';
-      hintsList.style.margin = '1rem 0 1rem 0';
-      hintsList.style.paddingLeft = '0.5rem';
-
-      puzzle.texts.forEach((hint, hIdx) => {
-        const hintDetails = document.createElement('details');
-        hintDetails.className = 'hint-block';
-        hintDetails.style.margin = '0.5rem 0';
-        hintDetails.style.background = '#1a1f2a';
-        hintDetails.style.borderRadius = '7px';
-        hintDetails.style.border = '1px solid #222';
-
-        const hintSummary = document.createElement('summary');
-        hintSummary.innerHTML = `<span style="font-weight:500;color:#e6eef6;">💡 Hinweis ${hIdx + 1}</span>`;
-        hintSummary.style.padding = '0.5rem 1rem';
-        hintSummary.style.cursor = 'pointer';
-        hintDetails.appendChild(hintSummary);
-
-        const hintText = document.createElement('div');
-        hintText.textContent = hint;
-        hintText.style.padding = '0.5rem 1.5rem 1rem 1.5rem';
-        hintText.style.color = '#e6eef6';
-        hintDetails.appendChild(hintText);
-
-        hintsList.appendChild(hintDetails);
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          obs.unobserve(entry.target);
+        }
       });
-      puzzleDetails.appendChild(hintsList);
+    },
+    {
+      threshold: 0.15,
     }
+  );
 
-    if (puzzle.solution) {
-      const solutionDetails = document.createElement('details');
-      solutionDetails.className = 'solution-block';
-      solutionDetails.style.margin = '1rem 0 0.5rem 0';
-      solutionDetails.style.background = '#222a38';
-      solutionDetails.style.border = '1px solid #444';
-      solutionDetails.style.borderRadius = '7px';
+  revealElements.forEach((element) => observer.observe(element));
+}
 
-      const solutionSummary = document.createElement('summary');
-      solutionSummary.innerHTML = `<span style="font-weight:600;color:#e6eef6;">🔓 Lösung anzeigen</span>`;
-      solutionSummary.style.padding = '0.7rem 1rem';
-      solutionSummary.style.cursor = 'pointer';
-      solutionDetails.appendChild(solutionSummary);
+function setupNavigationHandlers() {
+  const desktopNavButtons = document.querySelectorAll(".nav-btn");
+  desktopNavButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const route = btn.dataset.route;
+      navigate(route);
+      if (route === "home") renderGames(currentSearch);
+    });
+  });
 
-      const solutionText = document.createElement('div');
-      solutionText.textContent = puzzle.solution;
-      solutionText.style.padding = '0.7rem 1.5rem 1rem 1.5rem';
-      solutionText.style.color = '#e6eef6';
-      solutionText.style.fontWeight = '500';
-      solutionDetails.appendChild(solutionText);
+  const mobileButtons = document.querySelectorAll(".mobile-nav-btn");
+  mobileButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const route = btn.dataset.route;
+      navigate(route);
+      if (route === "home") renderGames(currentSearch);
+    });
+  });
 
-      puzzleDetails.appendChild(solutionDetails);
-    }
-
-    container.appendChild(puzzleDetails);
+  const navToggle = document.getElementById("navToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  navToggle.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   });
 }
 
-// Beispiel: Zeige Puzzles nach Passwortprüfung oder direkt, je nach Spiel
-function showGamePuzzles(game) {
-  const puzzleContainer = document.getElementById('puzzleContainer');
-  if (game.isPasswordProtected) {
-    puzzleContainer.classList.add('hidden');
-  } else {
-    puzzleContainer.classList.remove('hidden');
-    renderPuzzles(game);
-  }
+function setupSearch() {
+  const searchInput = document.getElementById("gameSearch");
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", () => {
+    currentSearch = searchInput.value;
+    renderGames(currentSearch);
+  });
 }
 
-// Passwortprüfung anpassen, damit nach Erfolg Puzzles angezeigt werden
-document.getElementById('pwSubmit').onclick = function() {
-  const pwInput = document.getElementById('pwInput');
-  const pwError = document.getElementById('pwError');
-  const gameId = window.currentGameId;
-  const game = games.find(g => g.id === gameId);
-  if (pwInput.value === game.password) {
-    pwError.classList.add('hidden');
-    document.getElementById('passwordGate').classList.add('hidden');
-    document.getElementById('puzzleContainer').classList.remove('hidden');
-    renderPuzzles(game);
-  } else {
-    pwError.classList.remove('hidden');
-  }
-};
+window.addEventListener("DOMContentLoaded", () => {
+  setupNavigationHandlers();
+  setupSearch();
 
-// Beim Anzeigen eines Spiels:
-function showGameDetails(gameId) {
-  // ...existing code...
-  window.currentGameId = gameId;
-  const game = games.find(g => g.id === gameId);
-  // ...existing code...
-  if (game.isPasswordProtected) {
-    document.getElementById('passwordGate').classList.remove('hidden');
-    document.getElementById('puzzleContainer').classList.add('hidden');
-  } else {
-    document.getElementById('passwordGate').classList.add('hidden');
-    document.getElementById('puzzleContainer').classList.remove('hidden');
-    renderPuzzles(game);
+  document.getElementById("pwSubmit").addEventListener("click", handlePasswordSubmit);
+
+  document.getElementById("pwInput").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handlePasswordSubmit();
+    }
+  });
+
+  if (!location.hash) {
+    history.replaceState({ page: "home" }, "", "#home");
   }
-  // ...existing code...
-}
+
+  renderGames();
+  handleHashNavigation(true);
+  applyRevealAnimation();
+});
+
+window.addEventListener("popstate", () => {
+  handleHashNavigation(true);
+});
+
+window.addEventListener("hashchange", () => {
+  handleHashNavigation(true);
+});
