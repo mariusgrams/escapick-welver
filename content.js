@@ -252,7 +252,7 @@ const games=[
     id: "5",
     title: "Spielshows (für jeden Anlass)",
     titleImage: "img/Spielshow/title.jpg",
-      description: "Ein unvergessliches Abenteuer für Dich und deine Freunde. Dann hab ich genau das Richtige. Ich hab für jeden Anlass was dabei, egal ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern oder nur ein Teamabend. Ihr könnt entscheiden, zwischen Einzelspiele, Duelle oder Teamspiele. Lasst mich wissen was ihr vorhabt und ich finde das Richtige für Euch.<br><br>Hier mal einige Beispiele:<ul><li>Wurfspiele</li><li>Balancieren</li><li>Schätzen</li><li>Koordination</li><li>Genauigkeit</li><li>Quizfragen</li><li>Zielgenauigkeit</li></ul>",
+    description: "Ein unvergessliches Abenteuer für Dich und deine Freunde. Dann hab ich genau das Richtige. Ich hab für jeden Anlass was dabei, egal ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern oder nur ein Teamabend. Ihr könnt entscheiden, zwischen Einzelspiele, Duelle oder Teamspiele. Lasst mich wissen was ihr vorhabt und ich finde das Richtige für Euch.<br><br>Hier mal einige Beispiele:<ul><li>Wurfspiele</li><li>Balancieren</li><li>Schätzen</li><li>Koordination</li><li>Genauigkeit</li><li>Quizfragen</li><li>Zielgenauigkeit</li></ul>",
     shortDescription: "Genau das richtige für jeden Anlass, ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern u.v.m",
     isPasswordProtected: false,
     password: "",
@@ -270,5 +270,28 @@ const games=[
     additionalImages: [],
     priceLine1: '',
     priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'
+  },
+    {
+    id: "6",
+    title: "Physiopraxis Dr. Chaos (NEU)",
+    titleImage: "img/6/title.png",
+    description: "Ihr arbeitet für eine Reinigungsfirma und sollt die Physiopraxis, von Dr. Chaos, reinigen. Dieser erwartet in knapp 75 Minuten einen VIP-Patienten. Schafft ihr das?",
+    shortDescription: "Ihr arbeitet für eine Reinigungsfirma und sollt die Physiopraxis, von Dr. Chaos, reinigen. Dieser erwartet in knapp 75 Minuten einen VIP-Patienten. Schafft ihr das?",
+    isPasswordProtected: false,
+    password: "",
+    puzzles: [],
+    builtOrBought: 'Alles selbst gebaut und ausgedacht',
+    availableSince: '01. Mai 2026',
+    difficulty: '2 von 5 Sternen',
+    duration: '75 Minuten  <br> <br>  Bestzeit: 65:23 Minuten',
+    roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
+    playerSize: '1 bis 4 Spieler',
+    playTime: '65 bis 75 Minuten',
+    playable: 'Zwischen April und Oktober (Sommerzeit), oder auch an besonders guten Tagen',
+    specialFeatures: 'Wüsste nicht, das was besonders ist ;-)',
+    ideaOrigin: 'Ein befreundetes Paar wollte etwas Besonderes zu einem Frühstücksbrunch machen, und da habe ich für sie diesen Raum gestaltet und ausgearbeitet. Warum wieder verwerfen, wenn man es weiterhin anbieten kann? :-)',
+    additionalImages: [],
+    priceLine1: '',
+    priceLine2: 'Raumpreis beträgt 30 € und 10 € für jede Person'
   }
 ];
