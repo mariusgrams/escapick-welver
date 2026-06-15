@@ -36,7 +36,7 @@ const games=[
     builtOrBought: 'Selbst gebaut, mit Unterstützung meines Schwagers (Bauzeit: etwa 6 Monate)',
     availableSince: '06. Dezember 2020',
     difficulty: '3 von 5 Sternen',
-    duration: '90 Minuten plus Verlängerung ;-) <br><br> Bestzeit: 92:12 Minuten am 25.08.2024',
+    duration: '90 Minuten plus Verlängerung ;-) <br><br> Bestzeit: 92:03 Minuten am 04.06.2026',
     roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
     playerSize: '2 bis 4 Spieler',
     playTime: '75 bis 110 Minuten',
