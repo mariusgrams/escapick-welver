@@ -25,32 +25,6 @@ const games=[
     priceLine2: 'Raumpreis beträgt 15 € (Einsteigerpreis) und 10 € für jede Person (z.B. 2 Personen = 35 €)'
   },
   {
-    id:"1",
-    title:"Das Fussballspiel (nur auf Anfrage spielbar)",
-    titleImage:"img/fussballspiel/title.png",
-    description:"Ihr seid Fussballfans vom FC St. Pauli und wahre Fans, helfen ihrem Verein, wo es nur geht. Am Wochenende steht das Derby, gegen den Hamburger SV, an. Derbys haben eine grosse Bedeutung und daher ist die Unterstützung sehr wichtig. Deshalb versucht ihr, in einer Nacht und Nebel Aktion, in das Vereinsheim vom Hamburger SV zu gelangen. Hier versprecht ihr Euch, wichtige Details zufinden, damit es mit einem Sieg, am Wochenende, klappt. Doch dafür habt ihr nur 90 Minuten Zeit. Viel Erfolg !!!!",
-    shortDescription: "Der richtige Raum für Fussballfans, doch auch ohne Fussballverstand, kann er problemlos gespielt werden. Traut ihr Euch?",
-    isPasswordProtected: false,
-    password: "",
-    puzzles: [],
-    builtOrBought: 'Selbst gebaut, mit Unterstützung meines Schwagers (Bauzeit: etwa 6 Monate)',
-    availableSince: '06. Dezember 2020',
-    difficulty: '3 von 5 Sternen',
-    duration: '90 Minuten plus Verlängerung ;-) <br><br> Bestzeit: 92:03 Minuten am 04.06.2026',
-    roomSize: 'Ca. 20m² auf der Dachterasse (Outdoor)',
-    playerSize: '2 bis 4 Spieler',
-    playTime: '75 bis 110 Minuten',
-    playable: 'Nur noch auf Anfrage (der Raum ist eigentlich geschlossen)',
-    specialFeatures: 'Dieser Raum ist nicht nur was für Fussballfans, sondern kann auch ohne Fussballverstand gespielt werden. Hier gibt es verschiedene Arten von Schlössern.',
-    ideaOrigin: 'Nach dem gelungenen ersten Raum, musste ein Zweiter her. Als Fussballliebhaber habe ich mich für so einen Raum entschieden.',
-    additionalImages: [
-      "img/fussballspiel/1.jpg",
-      "img/fussballspiel/2.jpg"
-    ],
-    priceLine1: '',
-    priceLine2: 'Raumpreis beträgt 30 € und 10 € für jede Person'
-  },
-  {
     id:"2",
     title:"Die Erbschaft Kains",
     titleImage:"img/erbschaft-kains/title.jpg",
