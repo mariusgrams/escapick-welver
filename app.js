@@ -249,13 +249,13 @@ function renderPuzzles(game) {
     puzzleDetails.className = "puzzle-block reveal";
 
     const puzzleSummary = document.createElement("summary");
-    puzzleSummary.innerHTML = `Ratsel ${pIdx + 1}`;
+    puzzleSummary.innerHTML = `Rätsel ${pIdx + 1}`;
     puzzleDetails.appendChild(puzzleSummary);
 
     if (puzzle.image) {
       const img = document.createElement("img");
       img.src = puzzle.image;
-      img.alt = `Ratsel ${pIdx + 1}`;
+      img.alt = `Rätsel ${pIdx + 1}`;
       img.loading = "lazy";
       img.onclick = () => openImage(puzzle.image);
       puzzleDetails.appendChild(img);

@@ -3,7 +3,7 @@ const games=[
     id:"0",
     title:"Covid-19",
     titleImage:"img/covid-19/covid19-title.jpg",
-    description:"Der Medizinstudent Holger, machte während seines Studiums, mehrere Auslandssemester in Afrika und Asien. Hierbei entdeckte er den Impfstoff, gegen Covid-19. Diesen brachte er eines Tages mit nach Deutschland und deponierte ihn in seinem Studentenzimmer. Während einer Vorlesung verschafft ihr Euch zutritt, zu seinem Zimmer und sucht nach dem Impfstoff. Doch, denkt dran, die Vorlesung geht nur 60 Minuten.",
+    description:"Der Medizinstudent Holger, machte während seines Studiums, mehrere Auslandssemester in Afrika und Asien. Hierbei entdeckte er den Impfstoff, gegen Covid-19. Diesen brachte er eines Tages mit nach Deutschland und deponierte ihn in seinem Studentenzimmer. Während einer Vorlesung verschafft ihr Euch Zutritt zu seinem Zimmer und sucht nach dem Impfstoff. Doch, denkt dran, die Vorlesung geht nur 60 Minuten.",
     shortDescription: "In einem Studentenzimmer wurde der Impfstoff gegen Covid-19 versteckt. Könnt ihr ihn finden?",
 	  isPasswordProtected: false,
     password: "",
@@ -54,7 +54,7 @@ const games=[
     id:"3",
     title:"Das Geheimnis von Professor T. (Rätselbox)",
     titleImage:"img/ratzellbox/title.jpg",
-    description:"In einer kleinen Stadt, lebte eins der berühmte Professor T., ein weltbekannter Abenteurer und Gelehrter, der für seine faszinierden Reisen bekannt war. Sein ganzes Leben hatte er unerforschte Länder bereist, Kulturen entdeckt und Schätze gesammelt. Doch eines Tages, nach einer Reise, kehrte er nicht zurück. Die Stadt war in Aufruhr, und das Gerücht machte die Runde, dass er ein großes Geheimnis entdeckt hatte, bevor er spurlos verschwand. Könnt ihr helfen ??????",
+    description:"In einer kleinen Stadt lebte der berühmte Professor T., ein weltbekannter Abenteurer und Gelehrter, der für seine faszinierenden Reisen bekannt war. Sein ganzes Leben hatte er unerforschte Länder bereist, Kulturen entdeckt und Schätze gesammelt. Doch eines Tages, nach einer Reise, kehrte er nicht zurück. Die Stadt war in Aufruhr, und das Gerücht machte die Runde, dass er ein großes Geheimnis entdeckt hatte, bevor er spurlos verschwand. Könnt ihr helfen ??????",
 	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. <br> Könnt ihr das Geheimnis von Professor T. lösen?",
 	  isPasswordProtected: true,
 	  password: "Marius1904",
@@ -63,8 +63,8 @@ const games=[
         image: "img/ratzellbox/ratzel_1.jpg",
         texts: [
           "Schaut Euch das Schloss mal genauer an. Vielleicht findet Ihr da eine Ähnlichkeit, gegenüber anderer Sachen an der Kiste.",
-          "Das Schloss und das Emblem auf dem Deckel sind doch Baugleich.",
-          "Bei dem Schloss müssen die Knöpfe reingedrückt werden, wo im Emblem, ein Bild plaziert ist."
+          "Das Schloss und das Emblem auf dem Deckel sind doch baugleich.",
+          "Bei dem Schloss müssen die Knöpfe reingedrückt werden, wo im Emblem, ein Bild platziert ist."
         ],
         solution: "Das wären 2,3 und 5. Mit dem unteren Hebel lässt sich dann, das Schloss, öffnen."
       },
@@ -91,7 +91,7 @@ const games=[
         texts: [
           "Hier sieht man viele Symbole. Versucht sie mal, von links nach rechts, zu benennen. Vielleicht fällt Euch was auf.",
           "Auto, Ball, Cabrio, Dose etc. Alles nach dem Alphabet sortiert. Also fehlt Euch was mit F, V und Z.",
-          "Findet Ihr Zahlen mit diesen Buchstaben? Dann erst die Zahl mit einem ?, dann zwei und zum Schluß drei. Also Vier, Fünf, Zwei. "
+          "Findet Ihr Zahlen mit diesen Buchstaben? Dann erst die Zahl mit einem ?, dann zwei und zum Schluss drei. Also Vier, Fünf, Zwei. "
         ],
         solution: "Mit 452 lässt sich das Schloss öffnen"
       },
@@ -99,7 +99,7 @@ const games=[
         image: "img/ratzellbox/ratzel_5.jpg",
         texts: [
           "Hier wurden Farben, den jeweiligen Zahlen hinzugefügt. Ihr müsst herausfinden, wo Gelb, Schwarz, Braun und Grau hinzugefügt werden müssten. ",
-          "Rot ist bei 3, Rosa und Pink bei 4, Gruen und Weiss bei 5, Orange bei 6, Violett bei 7, Hellblau bei 8, Hellgruen bei 9. Warum?",
+          "Rot ist bei 3, Rosa und Pink bei 4, Grün und Weiß bei 5, Orange bei 6, Violett bei 7, Hellblau bei 8, Hellgrün bei 9. Warum?",
           "Die Farben werden deren Zahl zugeordnet, wie viele Buchstaben das Wort hat. Also Gelb (4), Schwarz (7), Braun (5), Grau (4)."
         ],
         solution: "4754 ist der Code für das Schloss."
@@ -152,7 +152,7 @@ const games=[
       {
         image: "img/ratzellbox/ratzel_11.jpg",
         texts: [
-          "Trau Dich, Wer nicht hört, muss fühlen. Greif ruhig rein und fühle. Was fühlst du?",
+          "Trau Dich! Wer nicht hört, muss fühlen. Greif ruhig rein und fühle. Was fühlst du?",
           "Hier sind vier römische Zahlen zu fühlen. Das erste ist ein C ........",
           "Es sind C X C V - schaue auf die Tafel, was ist das für eine 3stellige Zahl?"
         ],
@@ -174,16 +174,16 @@ const games=[
           "Auf der Rückseite sind vier Löcher zu erkennen. Könnte das was mit dem Rohr zutun haben?",
           "Steckt das Rohr, in das erste Loch, von links und lest die Zahl (1) ab. Macht das mit den anderen Löchern genauso. "
         ],
-        solution: "Erstes Loch (1), dann (8), nun (0) und zum Schluß (5). Also 1805 für das Schloß (Dubai). Jetzt wird gepuzzlet :-)"
+        solution: "Erstes Loch (1), dann (8), nun (0) und zum Schluss (5). Also 1805 für das Schloss (Dubai). Jetzt wird gepuzzlet :-)"
       },
       {
         image: "img/ratzellbox/ratzel_14.jpg",
         texts: [
-          "Habt ihr das Puzzle auf der linke Fläche gelegt. Was kann man erkennen, außer viele Koffer. ",
+          "Habt ihr das Puzzle auf der linken Fläche gelegt. Was kann man erkennen, außer viele Koffer. ",
           "Schaut euch die Koffer mal genauer an und was habt ihr auf der Platte, der Rückseite, noch offen?",
           "Benutzt die Crypt Codes mit den Koffern von oben nach unten, Reihe für Reihe."
         ],
-        solution: "Linke Reihe, von oben nach unten (ACHT), mittlere Reihe (EINS), rechte Reihe (VIER) - 814 für das Schloß am Koffer"
+        solution: "Linke Reihe, von oben nach unten (ACHT), mittlere Reihe (EINS), rechte Reihe (VIER) - 814 für das Schloss am Koffer"
       }
     ],
     builtOrBought: 'Selbst gebaut (in der Winterzeit, in ca. 10 Wochen)',
@@ -226,7 +226,7 @@ const games=[
     id: "5",
     title: "Spielshows (für jeden Anlass)",
     titleImage: "img/Spielshow/title.jpg",
-    description: "Ein unvergessliches Abenteuer für Dich und deine Freunde. Dann hab ich genau das Richtige. Ich hab für jeden Anlass was dabei, egal ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern oder nur ein Teamabend. Ihr könnt entscheiden, zwischen Einzelspiele, Duelle oder Teamspiele. Lasst mich wissen was ihr vorhabt und ich finde das Richtige für Euch.<br><br>Hier mal einige Beispiele:<ul><li>Wurfspiele</li><li>Balancieren</li><li>Schätzen</li><li>Koordination</li><li>Genauigkeit</li><li>Quizfragen</li><li>Zielgenauigkeit</li></ul>",
+    description: "Ein unvergessliches Abenteuer für Dich und Deine Freunde. Dann hab ich genau das Richtige. Ich hab für jeden Anlass was dabei, egal ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern oder nur ein Teamabend. Ihr könnt zwischen Einzelspielen, Duellen oder Teamspielen entscheiden. Lasst mich wissen was ihr vorhabt und ich finde das Richtige für Euch.<br><br>Hier mal einige Beispiele:<ul><li>Wurfspiele</li><li>Balancieren</li><li>Schätzen</li><li>Koordination</li><li>Genauigkeit</li><li>Quizfragen</li><li>Zielgenauigkeit</li></ul>",
     shortDescription: "Genau das richtige für jeden Anlass, ob Betriebsfeiern, Kindergeburtstage, Junggesellenabschiede, Vereinsfeiern u.v.m",
     isPasswordProtected: false,
     password: "",
@@ -240,7 +240,7 @@ const games=[
     playTime: 'Variabel, zwischen 2 und 4 Stunden',
     playable: 'Überall, ob drinnen oder draußen. Das liegt an Euch.',
     specialFeatures: 'Es gibt viele Spielemöglichkeiten, mit viel Abwechselung',
-    ideaOrigin: 'Ich spiele sowas schon seit Jahren gegen meine Freunde. Ihr seid doch bestimmt auch ehrgeizig',
+    ideaOrigin: 'Ich spiele sowas schon seit Jahren gegen meine Freunde. Ihr seid doch bestimmt auch ehrgeizig.',
     additionalImages: [],
     priceLine1: '',
     priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'
@@ -249,7 +249,7 @@ const games=[
     id: "6",
     title: "Physiopraxis Dr. Chaos (NEU)",
     titleImage: "img/6/title.png",
-    description: "​Die Physiopraxis gleicht einem Schlachtfeld aus verstreuten Handtüchern, verschütteten Wasserflaschen und herumliegenden Bällen. Dr. Chaos steht mittendrin, starrt verzweifelt auf die Uhr und sieht den Besuch seines wichtigsten VIP-Patienten schon im Desaster enden. Genau in diesem Moment biegt das Team von Fix&Sauber auf den Parkplatz. Mit Präzision, Profi-Equipment und maximalem Tempo, könnten sie  den Behandlungsraum wieder auf Vordermann bringen. Doch hierfür haben sie nur 75 Minuten Zeit, damit die Praxis wieder duftet, die Liegen glänzen und Dr. Chaos wieder entspannter sein kann, um seinen VIP-Patienten zu empfangen. Worauf wartet ihr?",
+    description: "Die Physiopraxis gleicht einem Schlachtfeld aus verstreuten Handtüchern, verschütteten Wasserflaschen und herumliegenden Bällen. Dr. Chaos steht mittendrin, starrt verzweifelt auf die Uhr und sieht den Besuch seines wichtigsten VIP-Patienten schon im Desaster enden. Genau in diesem Moment biegt das Team von Fix&Sauber auf den Parkplatz. Mit Präzision, Profi-Equipment und maximalem Tempo könnten sie den Behandlungsraum wieder auf Vordermann bringen. Doch hierfür haben sie nur 75 Minuten Zeit, damit die Praxis wieder duftet, die Liegen glänzen und Dr. Chaos wieder entspannter sein kann, um seinen VIP-Patienten zu empfangen. Worauf wartet ihr?",
     shortDescription: "Ihr arbeitet für die Reinigungsfirma, Fix&Sauber und sollt die Physiopraxis, von Dr. Chaos, reinigen. Dieser erwartet nämlich in knapp 75 Minuten einen VIP-Patienten. Schafft ihr das?",
     isPasswordProtected: false,
     password: "",
