@@ -245,7 +245,7 @@ const games=[
     priceLine1: '',
     priceLine2: 'Nur auf Anfrage (jedes ist anders und daher nicht genau festzulegen)'
   },
-    {
+  {
     id: "6",
     title: "Physiopraxis Dr. Chaos (NEU)",
     titleImage: "img/6/title.png",
@@ -274,5 +274,34 @@ const games=[
     ],
     priceLine1: '',
     priceLine2: 'Raumpreis beträgt 30 € und 10 € für jede Person'
+  },
+  {
+    id: "7",
+    title: "Frühstücksbrunch mit Escape-Krimi im Heimathaus zu Welver (NEU)",
+    titleImage: "img/7/title.jpg",
+    description: "Am Morgen, des 24. Mai 2024, fand der Hausmeister vom Heimathaus, die Leiche, von Dr. Heinrich Bernhard Meier. Der Ortsheimatpfleger und 1.Vorsitzende des Heimatvereins, lag leblos im Flur/Haupteingang. Die Polizei tappt im Dunkeln und deshalb hat Kommissar Hok den Fall übernommen. Dieser ist aber schwieriger als gedacht, deshalb beruft er ein Soko-Team. Könnt ihr ihm als Soko-Team helfen?",
+    shortDescription: "Im Heimathaus ist ein Mord passiert. <br> Wo genau ist der Mord passiert? <br> Was war die Tatwaffe? <br> Welches Motiv? <br> Wer war der Täter? <br> Könnt ihr als Team helfen?",
+    isPasswordProtected: false,
+    password: "",
+    puzzles: [],
+    builtOrBought: 'Rätsel und Geschichte sind selbst ausgedacht',
+    availableSince: '01. Oktober 2026',
+    difficulty: '2 von 5 Sternen',
+    duration: '2 1/2 bis 3 Stunden (incl. Frühstücksbrunch)',
+    roomSize: 'Heimathaus Welver (gesamtes Gebäude)',
+    playerSize: '5 bis 8 Personen',
+    playTime: '2 1/2 bis 3 Stunden (Gesamtdauer)',
+    playable: '2026 gibt es 6 Termine (bereits ausgebucht) - weitere Termine für 2027 geplant',
+    specialFeatures: 'Das Escape-Krimi spielt im gesamten Heimathaus ab',
+    ideaOrigin: 'Die Location hat mir sofort so gut gefallen, das ich mit dem Heimatverein Kontakt aufgenommen habe, um eine weitere Aktivität ins Heimathaus zu bekommen.',
+    additionalImages: [
+      'img/7/1.jpg',
+      'img/7/2.jpg',
+      'img/7/3.jpg',
+      'img/7/4.jpg',
+      'img/7/5.jpg'
+    ],
+    priceLine1: '',
+    priceLine2: '30 € pro Person (incl. Frühstücksbrunch + Getränke)'
   }
 ];
