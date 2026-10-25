@@ -279,7 +279,7 @@ const games=[
     id: "7",
     title: "Frühstücksbrunch mit Escape-Krimi im Heimathaus zu Welver (NEU)",
     titleImage: "img/7/title.jpg",
-    description: "Am Morgen, des 24. Mai 2024, fand der Hausmeister vom Heimathaus, die Leiche, von Dr. Heinrich Bernhard Meier. Der Ortsheimatpfleger und 1.Vorsitzende des Heimatvereins, lag leblos im Flur/Haupteingang. Die Polizei tappt im Dunkeln und deshalb hat Kommissar Hok den Fall übernommen. Dieser ist aber schwieriger als gedacht, deshalb beruft er ein Soko-Team. Könnt ihr ihm als Soko-Team helfen?",
+    description: "Am Morgen, des 24. Mai 2024, fand der Hausmeister vom Heimathaus, die Leiche, von Dr. Engelbert Krause. Der Ortsheimatpfleger und 1.Vorsitzende des Heimatvereins, lag leblos im Flur/Haupteingang. Die Polizei tappt im Dunkeln und deshalb hat Kommissar Hok den Fall übernommen. Dieser ist aber schwieriger als gedacht, deshalb beruft er ein Soko-Team. Könnt ihr ihm als Soko-Team helfen?",
     shortDescription: "Im Heimathaus ist ein Mord passiert. <br> Wo genau ist der Mord passiert? <br> Was war die Tatwaffe? <br> Welches Motiv? <br> Wer war der Täter? <br> Könnt ihr als Team helfen?",
     isPasswordProtected: false,
     password: "",
