@@ -55,7 +55,7 @@ const games=[
     title:"Das Geheimnis von Professor T. (Rätselbox)",
     titleImage:"img/ratzellbox/title.jpg",
     description:"In einer kleinen Stadt lebte der berühmte Professor T., ein weltbekannter Abenteurer und Gelehrter, der für seine faszinierenden Reisen bekannt war. Sein ganzes Leben hatte er unerforschte Länder bereist, Kulturen entdeckt und Schätze gesammelt. Doch eines Tages, nach einer Reise, kehrte er nicht zurück. Die Stadt war in Aufruhr, und das Gerücht machte die Runde, dass er ein großes Geheimnis entdeckt hatte, bevor er spurlos verschwand. Könnt ihr helfen ??????",
-	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. <br> Könnt ihr das Geheimnis von Professor T. lösen?",
+	  shortDescription: "Hierbei handelt es sich um eine hölzerne Rätselkiste, ideal für Rätselfüchse. <br> Könnt ihr das Geheimnis von Professor T. lösen? <br> <b>Bis zum 07.12. in 21217 Seevetal ausleihbar!</b>",
 	  isPasswordProtected: true,
 	  password: "Marius1904",
     puzzles: [
@@ -191,7 +191,7 @@ const games=[
     duration: '60 Minuten und mehr... <br> <br> Bestzeit: 65:57 Minuten am 03.04.2026',
     playTime: '60 Minuten und mehr',
     playerSize: '2 Personen',
-    playable: 'Jederzeit ;-) ',
+    playable: 'Jederzeit ;-) <br> Bis zum 07.12. in 21217 Seevetal ausleihbar',
     specialFeatures: 'Die Rätselkiste kann man sich auch zu sich nach Hause holen und dann kann dort gerätselt werden',
     ideaOrigin: 'Das ich keine Räumlichkeiten mehr zur Verfügung hatte, aber noch reichlich Ideen im Kopf, dachte ich mir, so eine Rätselkiste hätte was ;-)',
     additionalImages: [
